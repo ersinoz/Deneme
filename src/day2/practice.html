@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <title>Practice</title>
     <style>
-    .sibling {color:blue}
+        div > blockquote {
+                color: blue
+        }
+
     </style>
 </head>
 <body>
@@ -19,8 +22,12 @@
         Facilispede estibulum nulla orna nisl velit elit ac aliquat non tincidunt. Namjusto cras urna
         urnaretra lor urna neque sed quis orci nulla. Laoremut vitae doloreet condimentumst phasellentes
         dolor ut a ipsum id consectetus. Inpede cumst vitae ris tellentesque fring intesquet.</p>
-    <p>Urnaultrices quis curabitur phasellentesque congue magnis vestibulum quismodo nulla et feugiat
-        adipiscinia pellentum leo.</p>
+    <span>Urnaultrices quis curabitur phasellentesque congue magnis vestibulum quismodo nulla et feugiat
+        adipiscinia pellentum leo.
+        <blockquote>
+            <h1>this blockquote is not selected because it's not direct child of div!</h1>
+        </blockquote>
+    </span>
     <footer class="more">Read More &raquo;</footer>
     <blockquote class="child sibling">
         <h2>Lorum ipsum dolor</h2>
