@@ -14,6 +14,7 @@ public class _14_SendKeys {
         driver.findElement(By.id("email")).sendKeys("info@techno.study");
         driver.findElement(By.id("name")).sendKeys("Fatih");
         driver.findElement(By.id("address")).sendKeys("Getty Ave 600");
+        driver.findElement(By.className("btn-primary")).click(); // cannot use space in class name
 //        driver.quit();
     }
 }
