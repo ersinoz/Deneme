@@ -13,8 +13,7 @@ public class _09_FindingElements {
         WebDriver driver = new ChromeDriver(); // this will open the chrome browser
         driver.get("http://www.practiceselenium.com");  // this will open the website and wait until full load
         List<WebElement> liElements = driver.findElements(By.tagName("li"));
-        for (int i = 0; i < liElements.size(); i++) {
-            WebElement element = liElements.get(i);
+        for(WebElement element : liElements) {
             System.out.println(element.getText());
         }
         driver.quit();
