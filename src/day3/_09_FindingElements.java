@@ -12,7 +12,7 @@ public class _09_FindingElements {
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\Driver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver(); // this will open the chrome browser
         driver.get("http://www.practiceselenium.com");  // this will open the website and wait until full load
-        List<WebElement> liElements = driver.findElements(By.tagName("li"));
+        List<WebElement> liElements = driver.findElements(By.tagName("li")); //if nothing is found it will return an empty list
         for(WebElement element : liElements) {
             System.out.println(element.getText());
         }
