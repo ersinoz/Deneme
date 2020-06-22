@@ -1,7 +1,5 @@
 package day4;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import utils.BaseDriver;
 
 public class _01_OpeningWebsite extends BaseDriver {
