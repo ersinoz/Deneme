@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import utils.BaseDriver;
 
-public class _01_XPathCheckThatWeAreLoggedIn extends BaseDriver {
+public class _03_XPathAddFirstElementToCart extends BaseDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
 
@@ -22,6 +22,8 @@ public class _01_XPathCheckThatWeAreLoggedIn extends BaseDriver {
         }
 
         // add first item to cart
+
+
         // check if added
         // navigate back
         // add second item to cart
