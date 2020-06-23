@@ -23,6 +23,10 @@ public class _03_XPathAddFirstElementToCart extends BaseDriver {
 
         // add first item to cart
         driver.findElement(By.xpath("//a[@id='item_4_title_link']")).click();
+        String firstItemName = driver.findElement(By.xpath("//div[@class='inventory_details_name']")).getText();
+        String firstItemPrice = driver.findElement(By.xpath("//div[@class='inventory_details_price']")).getText();
+        System.out.println("firstItemName: " + firstItemName);
+        System.out.println("firstItemPrice: " + firstItemPrice);
         driver.findElement(By.xpath("//button[contains(@class,'btn_primary')]")).click();
 
         // check if added
