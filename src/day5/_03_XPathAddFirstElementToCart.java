@@ -22,7 +22,8 @@ public class _03_XPathAddFirstElementToCart extends BaseDriver {
         }
 
         // add first item to cart
-
+        driver.findElement(By.xpath("//a[@id='item_4_title_link']")).click();
+        driver.findElement(By.xpath("//button[contains(@class,'btn_primary')]")).click();
 
         // check if added
         // navigate back
@@ -34,6 +35,6 @@ public class _03_XPathAddFirstElementToCart extends BaseDriver {
         // check tax is 8%
         // go to finish page and check thank you message
 
-        driver.quit();
+//        driver.quit();
     }
 }
