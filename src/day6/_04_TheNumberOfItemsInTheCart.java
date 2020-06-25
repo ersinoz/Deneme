@@ -13,16 +13,6 @@ public class _04_TheNumberOfItemsInTheCart extends BaseDriver {
 
     }
 
-    private static int getNumberOfItemsInTheCart() {
-        try {
-            String itemCountText = driver.findElement(By.xpath("//span[@class='fa-layers-counter shopping_cart_badge']")).getText();
-            return Integer.parseInt(itemCountText);
-        } catch (NoSuchElementException e) {
-            return 0;
-        }
-    }
-
-
     // login function
     public static String login(String username, String password) {
         WebElement usernameInput = driver.findElement(By.xpath("//input[@id='user-name']"));
@@ -53,6 +43,14 @@ public class _04_TheNumberOfItemsInTheCart extends BaseDriver {
     }
 
     // get the number of items in the cart
+    private static int getNumberOfItemsInTheCart() {
+        try {
+            String itemCountText = driver.findElement(By.xpath("//span[@class='fa-layers-counter shopping_cart_badge']")).getText();
+            return Integer.parseInt(itemCountText);
+        } catch (NoSuchElementException e) {
+            return 0;
+        }
+    }
     // remove item from the cart
     // get the list of available items
     // get the list of items in the cart
