@@ -2,6 +2,7 @@ package day6;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import utils.BaseDriver;
 
 public class _01_Login extends BaseDriver {
@@ -13,8 +14,12 @@ public class _01_Login extends BaseDriver {
 
     // login function
     public static String login(String username, String password) {
-        driver.findElement(By.xpath("//input[@id='user-name']")).sendKeys(username);
-        driver.findElement(By.xpath("//input[@data-test='password']")).sendKeys(password);
+        WebElement usernameInput = driver.findElement(By.xpath("//input[@id='user-name']"));
+        usernameInput.clear();
+        usernameInput.sendKeys(username);
+        WebElement passwordInput = driver.findElement(By.xpath("//input[@data-test='password']"));
+        passwordInput.clear();
+        passwordInput.sendKeys(password);
         driver.findElement(By.xpath("//input[@class='btn_action']")).click();
 
         try {
