@@ -8,9 +8,13 @@ import utils.BaseDriver;
 public class _03_AddToCart extends BaseDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
-        String result = login("locked_out_user", "secret_sauce");
-        System.out.println(result);
+        login("standard_user", "secret_sauce");
+        addToCart("Sauce Labs Backpack");
+        addToCart("Sauce Labs Bolt T-Shirt");
+        addToCart("Sauce Labs Onesie");
+
     }
+
 
     // login function
     public static String login(String username, String password) {
@@ -37,6 +41,10 @@ public class _03_AddToCart extends BaseDriver {
     }
 
     // add to cart function
+    private static void addToCart(String itemName) {
+        driver.findElement(By.xpath("//div[text()='"+ itemName +"']//following::button")).click();
+    }
+
     // get the number of items in the cart
     // remove item from the cart
     // get the list of available items
