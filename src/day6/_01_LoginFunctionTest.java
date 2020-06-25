@@ -24,15 +24,12 @@ public class _01_LoginFunctionTest extends BaseDriver {
         expectedErrorMessages.add("success");
         expectedErrorMessages.add("success");
 
-        int index = 0;
-        for (String username : usernames) {
-            String loginResult = login(username, password);
+        for (int i = 0; i < usernames.size(); i++) {
+            String loginResult = login(usernames.get(i), password);
             if(loginResult.equals("success")) {
                 driver.navigate().back(); // TODO: create log out function here
             }
-            System.out.println("for username: " + username + " the result is: " + loginResult);
-            Assert.assertEquals(expectedErrorMessages.get(index), loginResult);
-            index++;
+            Assert.assertEquals(expectedErrorMessages.get(i), loginResult);
         }
     }
 
