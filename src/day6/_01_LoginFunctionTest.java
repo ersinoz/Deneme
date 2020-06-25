@@ -16,6 +16,7 @@ public class _01_LoginFunctionTest extends BaseDriver {
         usernames.add("locked_out_user");
         usernames.add("problem_user");
         usernames.add("performance_glitch_user");
+        usernames.add("non_existing_user");
         String password = "secret_sauce";
 
         ArrayList<String>  expectedErrorMessages =  new ArrayList<>();
@@ -23,6 +24,7 @@ public class _01_LoginFunctionTest extends BaseDriver {
         expectedErrorMessages.add("Epic sadface: Sorry, this user has been locked out.");
         expectedErrorMessages.add("success");
         expectedErrorMessages.add("success");
+        expectedErrorMessages.add("Epic sadface: Username and password do not match any user in this service");
 
         for (int i = 0; i < usernames.size(); i++) {
             String loginResult = login(usernames.get(i), password);
@@ -31,6 +33,7 @@ public class _01_LoginFunctionTest extends BaseDriver {
             }
             Assert.assertEquals(expectedErrorMessages.get(i), loginResult);
         }
+        driver.quit();
     }
 
     // login function
