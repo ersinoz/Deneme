@@ -6,27 +6,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import utils.BaseDriver;
 
+import java.util.Random;
+
 public class _10_CalculatorTest extends BaseDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://testsheepnz.github.io/BasicCalculator.html");
         Select operations = new Select(driver.findElement(By.id("selectOperationDropdown")));
-        Double operand1 = 1.0;
-        Double operand2 = 1.0;
+        Random randomGenerator = new Random();
+        Double operand1 = randomGenerator.nextDouble() * 100;
+        Double operand2 = randomGenerator.nextDouble() * 100;
         for (WebElement operation : operations.getOptions()) {
             if (operation.getText().equals("Concatenate")) {
                 String answer = calculate(operand1.toString(), operand2.toString(), operation.getText());
-                String expected = operand1.toString() + operand2.toString();
+                String expected = operand1.toString().substring(0, 9) + operand2.toString().substring(0, 9);
                 Assert.assertEquals(expected, answer);
             } else {
                 Double answer = calculate(operand1, operand2, operation.getText());
                 if (operation.getText().equals("Add")) {
-                    Assert.assertEquals((operand1 + operand2), answer, 0.00001);
+                    Assert.assertEquals((operand1 + operand2), answer, 0.001);
                 } else if (operation.getText().equals("Subtract")) {
-                    Assert.assertEquals((operand1 - operand2), answer, 0.00001);
+                    Assert.assertEquals((operand1 - operand2), answer, 0.001);
                 } else if (operation.getText().equals("Multiply")) {
-                    Assert.assertEquals((operand1 * operand2), answer, 0.00001);
+                    Assert.assertEquals((operand1 * operand2), answer, 0.001);
                 } else if (operation.getText().equals("Divide")) {
-                    Assert.assertEquals((operand1 / operand2), answer, 0.00001);
+                    Assert.assertEquals((operand1 / operand2), answer, 0.001);
                 }
             }
 
