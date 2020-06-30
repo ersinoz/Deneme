@@ -13,12 +13,15 @@ public class _10_CalculatorTest extends BaseDriver {
         driver.get("https://testsheepnz.github.io/BasicCalculator.html");
         Select operations = new Select(driver.findElement(By.id("selectOperationDropdown")));
         Random randomGenerator = new Random();
+        for (int i = 0; i < 5; i++) {
+
+
         Double operand1 = randomGenerator.nextDouble() * 100;
         Double operand2 = randomGenerator.nextDouble() * 100;
         for (WebElement operation : operations.getOptions()) {
             if (operation.getText().equals("Concatenate")) {
                 String answer = calculate(operand1.toString(), operand2.toString(), operation.getText());
-                String expected = operand1.toString().substring(0, 9) + operand2.toString().substring(0, 9);
+                String expected = operand1.toString().substring(0, 10) + operand2.toString().substring(0, 10);
                 Assert.assertEquals(expected, answer);
             } else {
                 Double answer = calculate(operand1, operand2, operation.getText());
@@ -32,7 +35,7 @@ public class _10_CalculatorTest extends BaseDriver {
                     Assert.assertEquals((operand1 / operand2), answer, 0.001);
                 }
             }
-
+        }
         }
         driver.quit();
     }
