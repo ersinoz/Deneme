@@ -6,6 +6,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import utils.BaseDriver;
 
+import java.util.List;
+
 public class _08_ActionHoverOverList extends BaseDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://www.etsy.com/");
@@ -18,7 +20,12 @@ public class _08_ActionHoverOverList extends BaseDriver {
         actions.moveToElement(kidsMenu).perform();
         Thread.sleep(1000);
 
-
+        List<WebElement> elements = driver.findElements(By.cssSelector("[data-ui=\"sub-nav-container\"] li"));
+        for (WebElement element : elements ){
+            if(element.isDisplayed()) {
+                System.out.println(element.getText());
+            }
+        }
     }
 
 }
