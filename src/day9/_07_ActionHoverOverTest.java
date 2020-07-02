@@ -16,9 +16,9 @@ public class _07_ActionHoverOverTest extends BaseDriver {
         WebElement e = driver.findElement(By.cssSelector("li.ui-draggable:first-child > a"));
         Actions actionsBuilder = new Actions(driver);
         Action action = actionsBuilder.moveToElement(e).click().build();
-        System.out.println(Color.fromString(e.getCssValue("color")).asHex());
+        System.out.println("Before hover: " + Color.fromString(e.getCssValue("color")).asHex());
         action.perform();
-        System.out.println(Color.fromString(e.getCssValue("color")).asHex());
+        System.out.println("After hover: " + Color.fromString(e.getCssValue("color")).asHex());
 
         // be careful, the css property value should be applied to the web element that you are inspecting
         // if you select #credit2 element which is actually a li element, the style is not applied to it
