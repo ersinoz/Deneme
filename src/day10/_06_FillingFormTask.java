@@ -3,6 +3,7 @@ package day10;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,9 +22,6 @@ public class _06_FillingFormTask extends BaseDriver {
 
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.textToBe(By.id("submit-control"), "Form submited Successfully!"));
-
-        String text = driver.findElement(By.id("submit-control")).getText();
-        Assert.assertEquals("Form submited Successfully!",text);
 
         driver.quit();
     }
