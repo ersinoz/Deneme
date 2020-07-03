@@ -17,6 +17,6 @@ public class _05_AddToCartWindowTask extends BaseDriver {
         // close the window
         // switch back to main window
         // click on the cart
-        // verify that cart contains you product
+        // verify that cart contains you product by name
     }
 }
