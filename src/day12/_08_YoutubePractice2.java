@@ -14,7 +14,7 @@ public class _08_YoutubePractice2 extends BaseDriver {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebDriverWait wait = new WebDriverWait(driver, 5);
 
-        for (int i = 0; i < 1000; i++) {
+        while (true) {
             try {
                 List<WebElement> elements = driver.findElements(By.tagName("ytd-video-renderer"));
                 System.out.println("results size: " + elements.size());
