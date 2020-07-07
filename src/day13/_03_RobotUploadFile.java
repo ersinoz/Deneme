@@ -16,6 +16,7 @@ public class _03_RobotUploadFile extends BaseDriver {
         String pathToFile = "C:\\Users\\User\\Desktop\\test.txt";
 
         // using bellow I can create text in my paste clipboard, so later I can use CTRL+V to paste
+        // this is like pressing CTRL+C on pathToFile
         StringSelection stringSelection = new StringSelection(pathToFile);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection,null);
 
