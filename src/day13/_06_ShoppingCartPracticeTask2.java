@@ -1,5 +1,6 @@
 package day13;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BaseDriver;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +22,8 @@ public class _06_ShoppingCartPracticeTask2 extends BaseDriver {
         List<WebElement> items = driver.findElements(By.cssSelector("a[class*='add_to_cart_button']"));
         Integer numberOfItems = new Random().nextInt(items.size()) + 1;
         System.out.println("numberOfItems: " + numberOfItems);
+
+        List<String> namesOfItems =  new ArrayList<>();
         for (int i = 0; i < numberOfItems; i++) {
             items.get(i).click();
             wait.until(ExpectedConditions.attributeContains(items.get(i), "class", "added"));
@@ -41,5 +45,9 @@ public class _06_ShoppingCartPracticeTask2 extends BaseDriver {
         driver.findElement(By.id("billing_postcode")).sendKeys("12345");
 
         driver.findElement(By.id("place_order")).click();
+
+        Integer numberOfItemsInTheCart = driver.findElements(By.className("cart_item")).size();
+
+        Assert.assertEquals(numberOfItems, numberOfItemsInTheCart);
     }
 }
