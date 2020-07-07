@@ -23,6 +23,12 @@ public class _03_RobotUploadFile extends BaseDriver {
         Thread.sleep(2000);
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
-
+        Thread.sleep(2000);
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyPress(KeyEvent.VK_TAB);
+        Thread.sleep(2000);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        Thread.sleep(2000);
+        driver.findElement(By.id("submitbutton")).click();
     }
 }
