@@ -52,5 +52,6 @@ public class _06_ShoppingCartPracticeTask3 extends BaseDriver {
 
         // refactor to use li elements to be able to get item name and store them in a list
         // once on "Order Details" page verify the names of the products
+        // TODO: homework
     }
 }
