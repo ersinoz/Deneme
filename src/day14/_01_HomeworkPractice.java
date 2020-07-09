@@ -36,6 +36,23 @@ public class _01_HomeworkPractice extends BaseDriver {
             String errorMessage = textOfItemInTheCart + " is not in the expected list! " + namesOfItems;
             Assert.assertTrue(errorMessage, namesOfItems.contains(textOfItemInTheCart));
         }
+
+        List<WebElement> cartPrices = driver.findElements(By.cssSelector(".content .centered > .right"));
+        System.out.println("cartPrices size: " + cartPrices.size());
+        Double expectedTotal = 0.0;
+        for (WebElement cartPrice : cartPrices) {
+            String cartPriceText = cartPrice.getText();
+            expectedTotal += getDoubleFromText(cartPriceText);
+        }
+        System.out.println("Calculated expectedTotal: " + expectedTotal);
+        String totalText = driver.findElement(By.cssSelector(".cart-summary .right")).getText();
+        Double cartTotal = getDoubleFromText(totalText);
+
+        Assert.assertEquals(expectedTotal, cartTotal);
+    }
+
+    private static Double getDoubleFromText(String cartPriceText) {
+        return Double.valueOf(cartPriceText.replaceAll( "[^\\d.]","" ));
     }
 
     private static String getNameAndAddToCart(WebDriverWait wait) {
