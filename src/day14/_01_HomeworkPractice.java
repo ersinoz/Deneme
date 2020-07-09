@@ -1,10 +1,7 @@
 package day14;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BaseDriver;
@@ -61,16 +58,22 @@ public class _01_HomeworkPractice extends BaseDriver {
         System.out.println("itemName: " + itemName);
 
         try {
-            // TODO: takes too long if there are no dropdowns
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[role=\"listbox\"]")));
-            List<WebElement> dropDownBoxes = driver.findElements(By.cssSelector("[role=\"listbox\"]"));
-            for (WebElement dropDown : dropDownBoxes) {
-                dropDown.click();
-                dropDown.sendKeys(Keys.ENTER);
+            driver.findElement(By.cssSelector(".loader"));
+            try {
+                System.out.println("there is loader, expecting checkboxes, need to wait");
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[role=\"listbox\"]")));
+                List<WebElement> dropDownBoxes = driver.findElements(By.cssSelector("[role=\"listbox\"]"));
+                for (WebElement dropDown : dropDownBoxes) {
+                    dropDown.click();
+                    dropDown.sendKeys(Keys.ENTER);
+                }
+            } catch (TimeoutException e) {
+                Assert.fail("I expected checkboxes, but there arent any!");
             }
-        } catch (TimeoutException e) {
-            System.out.println("No dropdowns, continue");
+        } catch (NoSuchElementException e) {
+            System.out.println("there is no loader, no checkboxes, don't need to wait");
         }
+
         driver.findElement(By.cssSelector(".card button[role=button]")).click();
         driver.findElement(By.cssSelector(".close-toastr")).click();
         return itemName;
