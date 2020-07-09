@@ -49,6 +49,8 @@ public class _01_HomeworkPractice extends BaseDriver {
         Double cartTotal = getDoubleFromText(totalText);
 
         Assert.assertEquals(expectedTotal, cartTotal);
+
+        driver.quit();
     }
 
     private static Double getDoubleFromText(String cartPriceText) {
