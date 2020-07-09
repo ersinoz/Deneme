@@ -2,6 +2,7 @@ package day13;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,15 +19,26 @@ public class _06_ShoppingCartPracticeTask3 extends BaseDriver {
         WebDriverWait wait = new WebDriverWait(driver, 10); // the timeout of 5 seconds
 
         // add random number of items into the basket
-        List<WebElement> items = driver.findElements(By.cssSelector("a[class*='add_to_cart_button']"));
+        List<WebElement> items = driver.findElements(By.cssSelector(".instock"));
         Integer numberOfItems = new Random().nextInt(items.size()) + 1;
         System.out.println("numberOfItems: " + numberOfItems);
 
         List<String> namesOfItems =  new ArrayList<>();
         for (int i = 0; i < numberOfItems; i++) {
-            items.get(i).click();
-            wait.until(ExpectedConditions.attributeContains(items.get(i), "class", "added"));
-            items = driver.findElements(By.cssSelector("a[class*='add_to_cart_button']"));
+            try {
+                String itemName = getNameOfAddedElement(wait, items, i);
+                namesOfItems.add(itemName);
+            } catch (StaleElementReferenceException  e){
+                items = driver.findElements(By.cssSelector(".instock"));
+                String itemName = getNameOfAddedElement(wait, items, i);
+                namesOfItems.add(itemName);
+            }
+
+        }
+
+        System.out.println("Added: ");
+        for (String name: namesOfItems) {
+            System.out.println(name);
         }
 
         // go to checkout page and fill out the form
@@ -43,7 +55,11 @@ public class _06_ShoppingCartPracticeTask3 extends BaseDriver {
         driver.findElement(By.id("billing_state")).sendKeys("My state");
         driver.findElement(By.id("billing_postcode")).sendKeys("12345");
 
-        driver.findElement(By.id("place_order")).click();
+        try {
+            driver.findElement(By.id("place_order")).click();
+        } catch (StaleElementReferenceException e) {
+            driver.findElement(By.id("place_order")).click();
+        }
 
         Integer numberOfItemsInTheCart = driver.findElements(By.className("cart_item")).size();
 
@@ -53,5 +69,14 @@ public class _06_ShoppingCartPracticeTask3 extends BaseDriver {
         // refactor to use li elements to be able to get item name and store them in a list
         // once on "Order Details" page verify the names of the products
         // TODO: homework
+
+        driver.quit();
+    }
+
+    private static String getNameOfAddedElement(WebDriverWait wait, List<WebElement> items, int i) {
+        WebElement liItem = items.get(i);
+        liItem.findElement(By.cssSelector("a.add_to_cart_button")).click();
+        wait.until(ExpectedConditions.attributeContains(liItem.findElement(By.cssSelector("a.add_to_cart_button")), "class", "added"));
+        return liItem.findElement(By.cssSelector("h3")).getText();
     }
 }
