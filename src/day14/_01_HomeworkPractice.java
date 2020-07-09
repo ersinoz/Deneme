@@ -1,6 +1,8 @@
 package day14;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,14 +30,26 @@ public class _01_HomeworkPractice extends BaseDriver {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".pusher .header")));
         String itemName = driver.findElement(By.cssSelector(".pusher .header")).getText();
         System.out.println("itemName: " + itemName);
+
+        try {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[role=\"listbox\"]")));
+            List<WebElement> dropDownBoxes = driver.findElements(By.cssSelector("[role=\"listbox\"]"));
+            for (WebElement dropDown : dropDownBoxes) {
+                dropDown.click();
+                dropDown.sendKeys(Keys.ENTER);
+            }
+        } catch (TimeoutException e) {
+            System.out.println("No dropdowns, continue");
+        }
         driver.findElement(By.cssSelector(".card button[role=button]")).click();
+        driver.findElement(By.cssSelector(".close-toastr")).click();
         return itemName;
     }
 
     private static void goToRandomItem(WebDriverWait wait) {
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".infinite-scroll-component button"), 0));
         List<WebElement> items = driver.findElements(By.cssSelector(".infinite-scroll-component button"));
-        System.out.println("items size: "+ items.size());
+        System.out.println("items size: " + items.size());
         int randomItem = new Random().nextInt(items.size());
         items.get(randomItem).click();
     }
