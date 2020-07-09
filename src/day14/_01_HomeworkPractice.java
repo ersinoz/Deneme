@@ -61,6 +61,7 @@ public class _01_HomeworkPractice extends BaseDriver {
         System.out.println("itemName: " + itemName);
 
         try {
+            // TODO: takes too long if there are no dropdowns
             wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[role=\"listbox\"]")));
             List<WebElement> dropDownBoxes = driver.findElements(By.cssSelector("[role=\"listbox\"]"));
             for (WebElement dropDown : dropDownBoxes) {
@@ -80,6 +81,7 @@ public class _01_HomeworkPractice extends BaseDriver {
         List<WebElement> items = driver.findElements(By.cssSelector(".infinite-scroll-component button"));
         System.out.println("items size: " + items.size());
         int randomItem = new Random().nextInt(items.size());
+        // TODO: this might click on already added item
         items.get(randomItem).click();
     }
 }
