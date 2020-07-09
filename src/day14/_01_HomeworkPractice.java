@@ -1,5 +1,6 @@
 package day14;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BaseDriver;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -15,15 +17,25 @@ public class _01_HomeworkPractice extends BaseDriver {
     public static void main(String[] args) {
         driver.get("https://pwa-woo.wpmobilepack.com/#/category/88");
         WebDriverWait wait = new WebDriverWait(driver, 5); // the timeout of 5 seconds
+        List<String> namesOfItems =  new ArrayList<>();
 
         goToRandomItem(wait);
-        getNameAndAddToCart(wait);
+        String firstItemName = getNameAndAddToCart(wait);
+        namesOfItems.add(firstItemName);
 
         driver.navigate().back();
 
         goToRandomItem(wait);
-        getNameAndAddToCart(wait);
+        String secondItemName = getNameAndAddToCart(wait);
+        namesOfItems.add(secondItemName);
 
+        driver.findElement(By.cssSelector(".cart-link")).click();
+        List<WebElement> cartItems = driver.findElements(By.cssSelector(".content .centered > .break-words"));
+        for (WebElement cartItem : cartItems) {
+            String textOfItemInTheCart = cartItem.getText();
+            String errorMessage = textOfItemInTheCart + " is not in the expected list! " + namesOfItems;
+            Assert.assertTrue(errorMessage, namesOfItems.contains(textOfItemInTheCart));
+        }
     }
 
     private static String getNameAndAddToCart(WebDriverWait wait) {
