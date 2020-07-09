@@ -20,7 +20,7 @@ public class _06_ShoppingCartPracticeTask3 extends BaseDriver {
 
         // add random number of items into the basket
         List<WebElement> items = driver.findElements(By.cssSelector(".instock"));
-        Integer numberOfItems = new Random().nextInt(items.size()) + 1;
+        int numberOfItems = 3;//new Random().nextInt(items.size()) + 1;
         System.out.println("numberOfItems: " + numberOfItems);
 
         List<String> namesOfItems =  new ArrayList<>();
@@ -61,14 +61,17 @@ public class _06_ShoppingCartPracticeTask3 extends BaseDriver {
             driver.findElement(By.id("place_order")).click();
         }
 
-        Integer numberOfItemsInTheCart = driver.findElements(By.className("cart_item")).size();
 
-        Assert.assertEquals(numberOfItems, numberOfItemsInTheCart);
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".order_item > .product-name > a"), 0 ));
+        List<WebElement> itemsInTheCart = driver.findElements(By.cssSelector(".order_item > .product-name > a"));
 
+        Assert.assertEquals(numberOfItems, itemsInTheCart.size());
 
-        // refactor to use li elements to be able to get item name and store them in a list
-        // once on "Order Details" page verify the names of the products
-        // TODO: homework
+        for(WebElement itemInTheCart : itemsInTheCart) {
+            String textOfItemInTheCart = itemInTheCart.getText();
+            String errorMessage = textOfItemInTheCart + " is not in the expected list! " + namesOfItems;
+            Assert.assertTrue(errorMessage, namesOfItems.contains(textOfItemInTheCart));
+        }
 
         driver.quit();
     }
