@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Random;
 
 public class _01_HomeworkPractice extends BaseDriver {
+
+    static List<Integer> randomItemsAdded = new ArrayList<>();
+
     public static void main(String[] args) {
         driver.get("https://pwa-woo.wpmobilepack.com/#/category/88");
         WebDriverWait wait = new WebDriverWait(driver, 5); // the timeout of 5 seconds
@@ -84,8 +87,15 @@ public class _01_HomeworkPractice extends BaseDriver {
         List<WebElement> items = driver.findElements(By.cssSelector(".infinite-scroll-component button"));
         System.out.println("items size: " + items.size());
         int randomItem = new Random().nextInt(items.size());
-        // TODO: this might click on already added item
+        if(randomItemsAdded.contains(randomItem)) { // if we already clicked on this item, try generate a new randomItem
+            randomItem = new Random().nextInt(items.size());
+            if(randomItemsAdded.contains(randomItem)) { // if we already clicked on this item, try generate a new randomItem
+                randomItem = new Random().nextInt(items.size());
+            }
+        } // this is going to try to generate unique random number 3 times
+
         items.get(randomItem).click();
+        randomItemsAdded.add(randomItem); // save items we already clicked
     }
 }
 
