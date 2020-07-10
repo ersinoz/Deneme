@@ -16,8 +16,8 @@ public class _04_LoginTest extends BaseDriver {
 
     @Test
     void loginTestCase() {
-            // test12345asd@test.com
-            // qwerty12345
+        // test12345asd@test.com
+        // qwerty12345
 
         //input the email
         //input the password
