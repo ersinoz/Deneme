@@ -33,7 +33,7 @@ public class _04_LoginTest extends BaseDriver {
         //input the email
         driver.findElement(By.cssSelector("#input-email")).sendKeys(email);
         //input the password
-        driver.findElement(By.cssSelector("#input-password")).sendKeys("qwerty12345");
+        driver.findElement(By.cssSelector("#input-password")).sendKeys(password);
         //click on login
         driver.findElement(By.cssSelector("input[value=\"Login\"]")).click();
         //verify that you are logged in
