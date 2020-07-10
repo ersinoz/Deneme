@@ -19,6 +19,11 @@ public class _04_LoginTest extends BaseDriver {
             // test12345asd@test.com
             // qwerty12345
 
+        //input the email
+        //input the password
+        //click on login
+        //verify that you are logged in
+
     }
 
 
