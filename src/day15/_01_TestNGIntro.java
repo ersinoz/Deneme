@@ -3,9 +3,7 @@ package day15;
 
 import org.testng.Assert;
 import org.testng.SkipException;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.Random;
 
@@ -42,5 +40,15 @@ public class _01_TestNGIntro {
     @AfterMethod
     void cleanUp(){
         System.out.println("Driver close!");
+    }
+
+    @BeforeClass
+    void beforeClass() {
+        System.out.println("Run before all the test cases!");
+    }
+
+    @AfterClass
+    void afterClass() {
+        System.out.println("Run after all the test cases!");
     }
 }
