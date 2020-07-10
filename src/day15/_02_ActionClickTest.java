@@ -29,4 +29,39 @@ public class _02_ActionClickTest {
 
         driver.quit();
     }
+
+    @Test
+    void actionDoubleClickTestCase() {
+        System.setProperty("webdriver.chrome.driver", "E:\\projects\\Selenium\\driver\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://demoqa.com/buttons");
+
+        WebElement clickButton = driver.findElement(By.xpath("//button[text()='Double Click Me']"));
+
+        Actions builder = new Actions(driver);
+        Action build = builder.doubleClick(clickButton).build();
+        build.perform();
+
+        String dynamicClickMessage = driver.findElement(By.id("doubleClickMessage")).getText();
+        Assert.assertEquals("You have done a double click", dynamicClickMessage);
+
+        driver.quit();
+    }
+
+    @Test
+    void actionRightClickTest() {
+        System.setProperty("webdriver.chrome.driver", "E:\\projects\\Selenium\\driver\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://demoqa.com/buttons");
+
+        WebElement clickButton = driver.findElement(By.xpath("//button[text()='Right Click Me']"));
+
+        Actions builder = new Actions(driver);
+        Action build = builder.contextClick(clickButton).build();
+        build.perform();
+
+        String dynamicClickMessage = driver.findElement(By.id("rightClickMessage")).getText();
+        Assert.assertEquals("You have done a right click", dynamicClickMessage);
+        driver.quit();
+    }
 }
