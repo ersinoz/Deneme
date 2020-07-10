@@ -32,6 +32,12 @@ public class _01_TestNGIntro {
         }
     }
 
+    String someText;
+    @Test
+    void testCase4() {
+        Assert.assertNotNull(someText);
+    }
+
     @BeforeMethod
     void setup() {
         System.out.println("Initializing WebDriver!");
