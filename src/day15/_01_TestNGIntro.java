@@ -13,6 +13,10 @@ public class _01_TestNGIntro {
 
     @Test
     void testCase2() {
+        boolean failCondition = true;
+        if(failCondition) {
+            Assert.fail("This test fail becase of some condition!");
+        }
 
     }
 }
