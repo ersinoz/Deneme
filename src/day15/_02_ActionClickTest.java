@@ -1,25 +1,21 @@
 package day15;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class _02_ActionClickTest {
-
-    private WebDriver driver;
-    private Actions builder;
+    public WebDriver driver;
+    public Actions builder;
 
     @BeforeClass
-    void setup(){
+    void setup() {
         System.setProperty("webdriver.chrome.driver", "E:\\projects\\Selenium\\driver\\chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get("https://demoqa.com/buttons");
         builder = new Actions(driver);
     }
 
@@ -30,6 +26,7 @@ public class _02_ActionClickTest {
 
     @Test
     void actionClickTestCase() {
+        driver.get("https://demoqa.com/buttons");
         WebElement clickButton = driver.findElement(By.xpath("//button[text()='Click Me']"));
 
         builder.moveToElement(clickButton).click().perform();
