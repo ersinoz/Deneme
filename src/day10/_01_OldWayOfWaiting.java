@@ -1,12 +1,9 @@
 package day10;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _01_OldWayOfWaiting extends BaseDriver {
+public class _01_OldWayOfWaiting extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://the-internet.herokuapp.com/dynamic_loading/2");
 

@@ -1,11 +1,9 @@
 package day7;
 
 import org.openqa.selenium.By;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-import java.util.concurrent.TimeUnit;
-
-public class _01_ThreadSleepExample extends BaseDriver {
+public class _01_ThreadSleepExample extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html");
         Thread.sleep(5000);

@@ -1,9 +1,9 @@
 package day11;
 
 import org.openqa.selenium.By;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _07_IframesTwoLevelsDeep extends BaseDriver {
+public class _07_IframesTwoLevelsDeep extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://chercher.tech/practice/frames");
         String label = driver.findElement(By.tagName("label")).getText();

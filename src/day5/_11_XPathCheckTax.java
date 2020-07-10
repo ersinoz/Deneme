@@ -4,9 +4,9 @@ package day5;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _11_XPathCheckTax extends BaseDriver {
+public class _11_XPathCheckTax extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
 

@@ -5,11 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.ArrayList;
 
-public class _02_LoginFunctionTest extends BaseDriver {
+public class _02_LoginFunctionTest extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
         ArrayList<String> usernames = new ArrayList<>();

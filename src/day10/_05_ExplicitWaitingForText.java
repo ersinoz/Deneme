@@ -3,9 +3,9 @@ package day10;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _05_ExplicitWaitingForText extends BaseDriver {
+public class _05_ExplicitWaitingForText extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
         WebDriverWait wait = new WebDriverWait(driver, 10); // the timeout of 5 seconds

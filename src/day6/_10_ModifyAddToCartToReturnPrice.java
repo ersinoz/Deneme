@@ -4,12 +4,12 @@ package day6;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class _10_ModifyAddToCartToReturnPrice extends BaseDriver {
+public class _10_ModifyAddToCartToReturnPrice extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
         login("standard_user", "secret_sauce");

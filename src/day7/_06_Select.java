@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 
-public class _06_Select extends BaseDriver {
+public class _06_Select extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://www.saucedemo.com/");
         login("standard_user", "secret_sauce");

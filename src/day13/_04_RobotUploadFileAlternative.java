@@ -1,9 +1,9 @@
 package day13;
 
 import org.openqa.selenium.By;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _04_RobotUploadFileAlternative extends BaseDriver {
+public class _04_RobotUploadFileAlternative extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("http://demo.guru99.com/test/upload/");
 

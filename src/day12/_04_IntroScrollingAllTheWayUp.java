@@ -1,9 +1,9 @@
 package day12;
 
 import org.openqa.selenium.JavascriptExecutor;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _04_IntroScrollingAllTheWayUp extends BaseDriver {
+public class _04_IntroScrollingAllTheWayUp extends BaseStaticDriver {
 
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://triplebyte.com/");

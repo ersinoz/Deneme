@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _07_RemoveCheckBoxTask extends BaseDriver {
+public class _07_RemoveCheckBoxTask extends BaseStaticDriver {
     public static void main(String[] args)  {
         driver.get("https://the-internet.herokuapp.com/dynamic_controls");
         WebDriverWait wait = new WebDriverWait(driver, 5);

@@ -4,12 +4,9 @@ package day8;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-import java.util.List;
-import java.util.Random;
-
-public class _06_ListAllCategoriesOfAmazon extends BaseDriver {
+public class _06_ListAllCategoriesOfAmazon extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("http://amazon.com");
         Select categories = new Select(driver.findElement(By.id("searchDropdownBox")));

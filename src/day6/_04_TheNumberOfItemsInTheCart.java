@@ -3,9 +3,9 @@ package day6;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _04_TheNumberOfItemsInTheCart extends BaseDriver {
+public class _04_TheNumberOfItemsInTheCart extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
         login("standard_user", "secret_sauce");

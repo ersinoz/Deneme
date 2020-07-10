@@ -2,14 +2,13 @@ package day9;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _01_ActionClickTest extends BaseDriver {
+public class _01_ActionClickTest extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://demoqa.com/buttons");
 

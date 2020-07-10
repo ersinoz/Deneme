@@ -2,9 +2,9 @@ package day5;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _03_XPathAddFirstElementToCart extends BaseDriver {
+public class _03_XPathAddFirstElementToCart extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
 

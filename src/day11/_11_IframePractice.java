@@ -1,11 +1,10 @@
 package day11;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _11_IframePractice extends BaseDriver {
+public class _11_IframePractice extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.123formbuilder.com/free-form-templates/");
         Actions actions = new Actions(driver);

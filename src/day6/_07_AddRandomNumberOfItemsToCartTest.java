@@ -5,13 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class _07_AddRandomNumberOfItemsToCartTest extends BaseDriver {
+public class _07_AddRandomNumberOfItemsToCartTest extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
         login("standard_user", "secret_sauce");

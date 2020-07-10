@@ -1,8 +1,8 @@
 package day6;
 
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _00_FunctionsPlan extends BaseDriver {
+public class _00_FunctionsPlan extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
     }

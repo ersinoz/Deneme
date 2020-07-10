@@ -2,13 +2,9 @@ package day11;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-import java.util.Set;
-
-public class _06_Iframes extends BaseDriver {
+public class _06_Iframes extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://chercher.tech/practice/frames");
         String label = driver.findElement(By.tagName("label")).getText();

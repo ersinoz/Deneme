@@ -5,11 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 
-public class _04_ActionDragAndDropTest2 extends BaseDriver {
+public class _04_ActionDragAndDropTest2 extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("http://demo.guru99.com/test/drag_drop.html");
 

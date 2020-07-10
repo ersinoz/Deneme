@@ -5,12 +5,11 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
-import java.util.Random;
 
-public class _02_HomeworkPracticeHandlingDropdown extends BaseDriver {
+public class _02_HomeworkPracticeHandlingDropdown extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://pwa-woo.wpmobilepack.com/#/product/1297"); //with checkboxes
 //        driver.get("https://pwa-woo.wpmobilepack.com/#/product/1295"); //without checkboxes

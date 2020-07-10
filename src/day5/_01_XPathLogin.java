@@ -1,9 +1,9 @@
 package day5;
 
 import org.openqa.selenium.By;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _01_XPathLogin extends BaseDriver {
+public class _01_XPathLogin extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
 

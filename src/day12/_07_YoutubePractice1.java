@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 
-public class _07_YoutubePractice1 extends BaseDriver {
+public class _07_YoutubePractice1 extends BaseStaticDriver {
 
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://www.youtube.com/results?search_query=selenium");

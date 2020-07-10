@@ -1,12 +1,9 @@
 package day7;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-import java.util.concurrent.TimeUnit;
-
-public class _02_WindowSize extends BaseDriver {
+public class _02_WindowSize extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html");
         Dimension dimension = driver.manage().window().getSize();

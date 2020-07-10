@@ -1,13 +1,13 @@
 package day13;
 
 import org.openqa.selenium.By;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 
-public class _03_RobotUploadFile extends BaseDriver {
+public class _03_RobotUploadFile extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException, AWTException {
         driver.get("http://demo.guru99.com/test/upload/");
 

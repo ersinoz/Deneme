@@ -2,16 +2,14 @@ package day12;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 import java.util.Random;
 
-public class _11_YoutubeScrollToNthElement extends BaseDriver {
+public class _11_YoutubeScrollToNthElement extends BaseStaticDriver {
 
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://www.youtube.com/results?search_query=selenium");

@@ -2,12 +2,12 @@ package day13;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 import java.util.Random;
 
-public class _05_ShoppingCartPracticeTask1 extends BaseDriver {
+public class _05_ShoppingCartPracticeTask1 extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("http://practice.automationtesting.in/shop/");
         // add random number of items into the basket

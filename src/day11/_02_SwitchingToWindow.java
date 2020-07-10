@@ -2,12 +2,12 @@ package day11;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 import java.util.Set;
 
-public class _02_SwitchingToWindow extends BaseDriver {
+public class _02_SwitchingToWindow extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://www.selenium.dev/");
         String mainWindowHandle = driver.getWindowHandle();

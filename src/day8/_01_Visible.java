@@ -3,9 +3,9 @@ package day8;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _01_Visible extends BaseDriver {
+public class _01_Visible extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp");
 

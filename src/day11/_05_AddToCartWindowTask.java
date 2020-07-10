@@ -2,15 +2,14 @@ package day11;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.Set;
 
-public class _05_AddToCartWindowTask extends BaseDriver {
+public class _05_AddToCartWindowTask extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.snapdeal.com/");
         WebDriverWait wait = new WebDriverWait(driver, 5);

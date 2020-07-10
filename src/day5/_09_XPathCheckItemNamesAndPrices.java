@@ -3,10 +3,10 @@ package day5;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 
-public class _09_XPathCheckItemNamesAndPrices extends BaseDriver {
+public class _09_XPathCheckItemNamesAndPrices extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
 

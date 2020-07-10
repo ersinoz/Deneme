@@ -2,9 +2,9 @@ package day11;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _09_IframesGetAllNested extends BaseDriver {
+public class _09_IframesGetAllNested extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://chercher.tech/practice/frames");
         getAllNestedFrames(driver, 0);

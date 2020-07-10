@@ -1,11 +1,11 @@
 package day7;
 
 import org.openqa.selenium.By;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class _00_ImplicitWaitingExample extends BaseDriver {
+public class _00_ImplicitWaitingExample extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

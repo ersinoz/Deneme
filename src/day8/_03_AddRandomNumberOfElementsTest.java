@@ -4,12 +4,12 @@ package day8;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 import java.util.Random;
 
-public class _03_AddRandomNumberOfElementsTest extends BaseDriver {
+public class _03_AddRandomNumberOfElementsTest extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("http://the-internet.herokuapp.com/add_remove_elements/");
         WebElement button = driver.findElement(By.cssSelector("button[onclick='addElement()']"));

@@ -2,11 +2,11 @@ package day4;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 
-public class _10_CountriesTask extends BaseDriver {
+public class _10_CountriesTask extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://formsmarts.com/form/yu?mode=h5");  // this will open the website and wait until full load
 

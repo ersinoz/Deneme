@@ -6,11 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-import java.util.List;
-
-public class _07_ActionHoverOverTest extends BaseDriver {
+public class _07_ActionHoverOverTest extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("http://demo.guru99.com/test/drag_drop.html");
         WebElement e = driver.findElement(By.cssSelector("li.ui-draggable:first-child > a"));

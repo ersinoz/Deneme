@@ -3,11 +3,11 @@ package day9;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 
-public class _09_ActionHoverOverList2 extends BaseDriver {
+public class _09_ActionHoverOverList2 extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://www.myntra.com");
         WebElement kidsMenu = driver.findElement(By.cssSelector("a[data-group=\"kids\"]"));

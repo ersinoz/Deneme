@@ -3,11 +3,11 @@ package day12;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 
-public class _08_YoutubePractice2 extends BaseDriver {
+public class _08_YoutubePractice2 extends BaseStaticDriver {
 
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://www.youtube.com/results?search_query=selenium");

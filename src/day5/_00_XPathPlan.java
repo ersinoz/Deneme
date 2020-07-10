@@ -1,8 +1,8 @@
 package day5;
 
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _00_XPathPlan extends BaseDriver {
+public class _00_XPathPlan extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
 

@@ -5,13 +5,13 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class _01_HomeworkPractice extends BaseDriver {
+public class _01_HomeworkPractice extends BaseStaticDriver {
 
     static List<Integer> randomItemsAdded = new ArrayList<>();
 

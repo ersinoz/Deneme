@@ -5,11 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.Random;
 
-public class _10_CalculatorTest extends BaseDriver {
+public class _10_CalculatorTest extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://testsheepnz.github.io/BasicCalculator.html");
         Select operations = new Select(driver.findElement(By.id("selectOperationDropdown")));

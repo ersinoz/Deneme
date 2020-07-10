@@ -3,12 +3,11 @@ package day9;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.Color;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.List;
 
-public class _08_ActionHoverOverList extends BaseDriver {
+public class _08_ActionHoverOverList extends BaseStaticDriver {
     public static void main(String[] args) throws InterruptedException {
         driver.get("https://www.etsy.com/");
         WebElement clothingMenu = driver.findElement(By.id("catnav-primary-link-10923"));

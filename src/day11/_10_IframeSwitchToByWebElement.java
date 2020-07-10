@@ -1,11 +1,10 @@
 package day11;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _10_IframeSwitchToByWebElement extends BaseDriver {
+public class _10_IframeSwitchToByWebElement extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://chercher.tech/practice/frames");
         WebElement iframe = driver.findElement(By.cssSelector("[name=\"iamframe\"]"));

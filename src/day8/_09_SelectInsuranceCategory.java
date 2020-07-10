@@ -2,11 +2,11 @@ package day8;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class _09_SelectInsuranceCategory extends BaseDriver {
+public class _09_SelectInsuranceCategory extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.iaai.com/");
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);

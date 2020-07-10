@@ -2,18 +2,17 @@ package day13;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class _06_ShoppingCartPracticeTask2 extends BaseDriver {
+public class _06_ShoppingCartPracticeTask2 extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("http://practice.automationtesting.in/shop/");
         driver.manage().window().maximize();

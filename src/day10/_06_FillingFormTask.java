@@ -2,17 +2,11 @@ package day10;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-import java.util.concurrent.TimeUnit;
-
-public class _06_FillingFormTask extends BaseDriver {
+public class _06_FillingFormTask extends BaseStaticDriver {
     public static void main(String[] args)  {
         driver.get("https://www.seleniumeasy.com/test/ajax-form-submit-demo.html");
 

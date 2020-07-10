@@ -3,9 +3,9 @@ package day6;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import utils.BaseDriver;
+import utils.BaseStaticDriver;
 
-public class _01_Login extends BaseDriver {
+public class _01_Login extends BaseStaticDriver {
     public static void main(String[] args) {
         driver.get("https://www.saucedemo.com/");
         String result = login("locked_out_user", "secret_sauce");
