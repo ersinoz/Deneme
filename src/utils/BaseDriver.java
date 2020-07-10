@@ -19,6 +19,6 @@ public class BaseDriver {
 
     @AfterClass
     protected void closeDriver() {
-        driver.quit();
+//        driver.quit();
     }
 }
