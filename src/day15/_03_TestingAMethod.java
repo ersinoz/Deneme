@@ -1,39 +1,37 @@
 package day15;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class _03_TestingAMethod {
 
-    @Test
+    @Test(priority = 4)
     void testCase1() {
         Double aDouble = getDoubleFromText("$14.50");
         Assert.assertEquals(aDouble, 14.5);
     }
 
-    @Test
+    @Test(priority = 3)
     void testCase2() {
         Double aDouble = getDoubleFromText("USD 10.90");
         Assert.assertEquals(aDouble, 10.9);
     }
 
-    @Test
+    @Test(priority = 2)
     void testCase3() {
         Double aDouble = getDoubleFromText("10.90$");
         Assert.assertEquals(aDouble, 10.9);
     }
 
-    @Test
+    @Test(priority = 1)
     void testCase4() {
         Double aDouble = getDoubleFromText("10000000$");
         Assert.assertEquals(aDouble, 10000000.0);
+    }
+
+    @Test(expectedExceptions = NumberFormatException.class, priority = 5)
+    void testCase5() {
+        getDoubleFromText("");
     }
 
     private Double getDoubleFromText(String cartPriceText) {
