@@ -1,9 +1,10 @@
 package day14;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utils.BaseDriver;
 
 import java.util.ArrayList;
@@ -34,12 +35,12 @@ public class _01_HomeworkPractice extends BaseDriver {
         for (WebElement cartItem : cartItems) {
             String textOfItemInTheCart = cartItem.getText();
             String errorMessage = textOfItemInTheCart + " is not in the expected list! " + namesOfItems;
-            Assert.assertTrue(errorMessage, namesOfItems.contains(textOfItemInTheCart));
+            Assert.assertTrue(namesOfItems.contains(textOfItemInTheCart), errorMessage);
         }
 
         List<WebElement> cartPrices = driver.findElements(By.cssSelector(".content .centered > .right"));
         System.out.println("cartPrices size: " + cartPrices.size());
-        Double expectedTotal = 0.0;
+        double expectedTotal = 0.0;
         for (WebElement cartPrice : cartPrices) {
             String cartPriceText = cartPrice.getText();
             expectedTotal += getDoubleFromText(cartPriceText);

@@ -1,9 +1,10 @@
 package day9;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import utils.BaseDriver;
 
 import java.util.List;
@@ -23,15 +24,15 @@ public class _04_ActionDragAndDropTest2 extends BaseDriver {
         // you can search inside another element reference
         List<WebElement> elements = dropZone.findElements(By.cssSelector("li"));
         boolean found = false;
-        for(WebElement element : elements) {
+        for (WebElement element : elements) {
             String elementText = element.getText();
-            if(elementText.equals(saleButton.getText())) {
+            if (elementText.equals(saleButton.getText())) {
                 found = true;
                 break;
             }
         }
 
-        Assert.assertTrue( "Could not find loan in dropzone",found);
+        Assert.assertTrue(found, "Could not find loan in dropzone");
     }
 
 }

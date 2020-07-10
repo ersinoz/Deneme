@@ -1,7 +1,8 @@
 package day7;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import utils.BaseDriver;
 
 public class _04_ConfirmAlertTest1 extends BaseDriver {

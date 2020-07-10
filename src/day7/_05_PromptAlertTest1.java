@@ -1,7 +1,8 @@
 package day7;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import utils.BaseDriver;
 
 public class _05_PromptAlertTest1 extends BaseDriver {
@@ -17,10 +18,10 @@ public class _05_PromptAlertTest1 extends BaseDriver {
         driver.switchTo().alert().accept();
 
         // find the result text on the website
-        String actualText =driver.findElement(By.xpath("//p[@id='prompt-demo']")).getText();
+        String actualText = driver.findElement(By.xpath("//p[@id='prompt-demo']")).getText();
         // confirm that the result test contains test string
         boolean contains = actualText.contains(testString);
-        Assert.assertTrue("Actual text should contain the test string!", contains);
+        Assert.assertTrue(contains, "Actual text should contain the test string!");
     }
 
 }

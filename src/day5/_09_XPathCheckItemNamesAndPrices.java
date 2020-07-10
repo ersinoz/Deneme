@@ -2,8 +2,9 @@ package day5;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.testng.Assert;
 import utils.BaseDriver;
-import org.junit.Assert;
+
 
 public class _09_XPathCheckItemNamesAndPrices extends BaseDriver {
     public static void main(String[] args) {

@@ -1,11 +1,12 @@
 package day13;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utils.BaseDriver;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class _06_ShoppingCartPracticeTask3 extends BaseDriver {
         for(WebElement itemInTheCart : itemsInTheCart) {
             String textOfItemInTheCart = itemInTheCart.getText();
             String errorMessage = textOfItemInTheCart + " is not in the expected list! " + namesOfItems;
-            Assert.assertTrue(errorMessage, namesOfItems.contains(textOfItemInTheCart));
+            Assert.assertTrue(namesOfItems.contains(textOfItemInTheCart), errorMessage);
         }
 
         driver.quit();

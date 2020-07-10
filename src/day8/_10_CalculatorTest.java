@@ -1,9 +1,10 @@
 package day8;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import utils.BaseDriver;
 
 import java.util.Random;
@@ -24,15 +25,20 @@ public class _10_CalculatorTest extends BaseDriver {
                 String expected = operand1.toString().substring(0, 10) + operand2.toString().substring(0, 10);
                 Assert.assertEquals(expected, answer);
             } else {
-                Double answer = calculate(operand1, operand2, operation.getText());
-                if (operation.getText().equals("Add")) {
-                    Assert.assertEquals((operand1 + operand2), answer, 0.001);
-                } else if (operation.getText().equals("Subtract")) {
-                    Assert.assertEquals((operand1 - operand2), answer, 0.001);
-                } else if (operation.getText().equals("Multiply")) {
-                    Assert.assertEquals((operand1 * operand2), answer, 0.001);
-                } else if (operation.getText().equals("Divide")) {
-                    Assert.assertEquals((operand1 / operand2), answer, 0.001);
+                double answer = calculate(operand1, operand2, operation.getText());
+                switch (operation.getText()) {
+                    case "Add":
+                        Assert.assertEquals((operand1 + operand2), answer, 0.001);
+                        break;
+                    case "Subtract":
+                        Assert.assertEquals((operand1 - operand2), answer, 0.001);
+                        break;
+                    case "Multiply":
+                        Assert.assertEquals((operand1 * operand2), answer, 0.001);
+                        break;
+                    case "Divide":
+                        Assert.assertEquals((operand1 / operand2), answer, 0.001);
+                        break;
                 }
             }
         }

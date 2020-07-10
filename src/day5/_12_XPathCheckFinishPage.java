@@ -1,8 +1,9 @@
 package day5;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.testng.Assert;
 import utils.BaseDriver;
 
 public class _12_XPathCheckFinishPage extends BaseDriver {

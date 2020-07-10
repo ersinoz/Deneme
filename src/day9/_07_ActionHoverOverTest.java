@@ -1,6 +1,6 @@
 package day9;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -11,7 +11,7 @@ import utils.BaseDriver;
 import java.util.List;
 
 public class _07_ActionHoverOverTest extends BaseDriver {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         driver.get("http://demo.guru99.com/test/drag_drop.html");
         WebElement e = driver.findElement(By.cssSelector("li.ui-draggable:first-child > a"));
         Actions actionsBuilder = new Actions(driver);

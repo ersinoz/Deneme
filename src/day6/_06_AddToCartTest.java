@@ -1,9 +1,10 @@
 package day6;
 
-import org.junit.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import utils.BaseDriver;
 
 import java.util.ArrayList;
