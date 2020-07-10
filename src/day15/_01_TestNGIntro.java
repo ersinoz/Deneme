@@ -18,9 +18,8 @@ public class _01_TestNGIntro {
     void testCase2() {
         boolean failCondition = true;
         if(failCondition) {
-            Assert.fail("This test fail becase of some condition!");
+            Assert.fail("This test fail because of some condition!");
         }
-
     }
 
     @Test
