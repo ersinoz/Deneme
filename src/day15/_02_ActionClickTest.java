@@ -1,32 +1,20 @@
 package day15;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import utils.BaseDriver;
 
-public class _02_ActionClickTest {
-    public WebDriver driver;
-    public Actions builder;
+public class _02_ActionClickTest extends BaseDriver {
 
     @BeforeClass
-    void setup() {
-        System.setProperty("webdriver.chrome.driver", "E:\\projects\\Selenium\\driver\\chromedriver.exe");
-        driver = new ChromeDriver();
-        builder = new Actions(driver);
-    }
-
-    @AfterClass
-    void closeDriver() {
-        driver.quit();
+    void goToWebsite() {
+        driver.get("https://demoqa.com/buttons");
     }
 
     @Test
     void actionClickTestCase() {
-        driver.get("https://demoqa.com/buttons");
         WebElement clickButton = driver.findElement(By.xpath("//button[text()='Click Me']"));
 
         builder.moveToElement(clickButton).click().perform();
