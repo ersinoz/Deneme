@@ -41,8 +41,10 @@ public class _01_DemoQA extends BaseDriver {
         WebElement randomElement = elements.get(new Random().nextInt(elements.size()));
         js.executeScript("arguments[0].scrollIntoView();", randomElement);
         randomElement.click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".text-right #addNewRecordButton")));
-        driver.findElement(By.cssSelector(".text-right #addNewRecordButton")).click();
+        WebElement addBookButton = driver.findElement(By.cssSelector(".text-right #addNewRecordButton"));
+        wait.until(ExpectedConditions.elementToBeClickable(addBookButton));
+        js.executeScript("arguments[0].scrollIntoView();", addBookButton);
+        addBookButton.click();
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         Assert.assertEquals("Book added to your collection.", alert.getText());
