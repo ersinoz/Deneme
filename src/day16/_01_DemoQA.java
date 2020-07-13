@@ -35,27 +35,17 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals(username,driver.findElement(By.cssSelector("#userName-value")).getText());
     }
 
-    @Test(priority = 1, enabled = false)
+    @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void addSingleToToCollectionTestCase(){
         List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
-        WebElement randomElement = elements.get(new Random().nextInt(elements.size()));
-        js.executeScript("arguments[0].scrollIntoView();", randomElement);
-        randomElement.click();
-        WebElement addBookButton = driver.findElement(By.cssSelector(".text-right #addNewRecordButton"));
-        wait.until(ExpectedConditions.elementToBeClickable(addBookButton));
-        js.executeScript("arguments[0].scrollIntoView();", addBookButton);
-        addBookButton.click();
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-        Assert.assertEquals("Book added to your collection.", alert.getText());
-        alert.accept();
+        addBook(elements, new Random().nextInt(elements.size()));
         removeAllBookFromCollection();
     }
 
     private void removeAllBookFromCollection() {
         driver.navigate().to("https://demoqa.com/profile");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".justify-content-end .text-right #submit")));
         WebElement removeAllBooks = driver.findElement(By.cssSelector(".justify-content-end .text-right #submit"));
-        wait.until(ExpectedConditions.elementToBeClickable(removeAllBooks));
         js.executeScript("arguments[0].scrollIntoView();", removeAllBooks);
         removeAllBooks.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("closeSmallModal-ok")));
@@ -66,7 +56,7 @@ public class _01_DemoQA extends BaseDriver {
         alert.accept();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void addSeveralBookToCollectionTestCase(){
         // generate a random number up to number of books
         // add those books to collection
@@ -75,22 +65,26 @@ public class _01_DemoQA extends BaseDriver {
         List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
         int numberOfElementsToAdd = new Random().nextInt(elements.size());
         for (int i = 0; i < numberOfElementsToAdd; i++) {
-            WebElement randomElement = elements.get(i);
-            js.executeScript("arguments[0].scrollIntoView();", randomElement);
-            randomElement.click();
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".text-right #addNewRecordButton")));
-            WebElement addBookButton = driver.findElement(By.cssSelector(".text-right #addNewRecordButton"));
-            js.executeScript("arguments[0].scrollIntoView();", addBookButton);
-            addBookButton.click();
-            wait.until(ExpectedConditions.alertIsPresent());
-            Alert alert = driver.switchTo().alert();
-            Assert.assertEquals("Book added to your collection.", alert.getText());
-            alert.accept();
+            addBook(elements, i);
             driver.navigate().back();
             wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));
             elements = driver.findElements(By.cssSelector(".mr-2"));
         }
         removeAllBookFromCollection();
 
+    }
+
+    private void addBook(List<WebElement> elements, int index) {
+        WebElement element = elements.get(index);
+        js.executeScript("arguments[0].scrollIntoView();", element);
+        element.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".text-right #addNewRecordButton")));
+        WebElement addBookButton = driver.findElement(By.cssSelector(".text-right #addNewRecordButton"));
+        js.executeScript("arguments[0].scrollIntoView();", addBookButton);
+        addBookButton.click();
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        Assert.assertEquals("Book added to your collection.", alert.getText());
+        alert.accept();
     }
 }
