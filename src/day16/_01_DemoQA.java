@@ -35,7 +35,7 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals(username,driver.findElement(By.cssSelector("#userName-value")).getText());
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, enabled = false)
     void addSingleToToCollectionTestCase(){
         List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
         WebElement randomElement = elements.get(new Random().nextInt(elements.size()));
@@ -66,11 +66,31 @@ public class _01_DemoQA extends BaseDriver {
         alert.accept();
     }
 
-    @Test
+    @Test(priority = 1)
     void addSeveralBookToCollectionTestCase(){
         // generate a random number up to number of books
         // add those books to collection
         // verify that the books you added are the same in the profile
         // delete all in the end
+        List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
+        int numberOfElementsToAdd = new Random().nextInt(elements.size());
+        for (int i = 0; i < numberOfElementsToAdd; i++) {
+            WebElement randomElement = elements.get(i);
+            js.executeScript("arguments[0].scrollIntoView();", randomElement);
+            randomElement.click();
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".text-right #addNewRecordButton")));
+            WebElement addBookButton = driver.findElement(By.cssSelector(".text-right #addNewRecordButton"));
+            js.executeScript("arguments[0].scrollIntoView();", addBookButton);
+            addBookButton.click();
+            wait.until(ExpectedConditions.alertIsPresent());
+            Alert alert = driver.switchTo().alert();
+            Assert.assertEquals("Book added to your collection.", alert.getText());
+            alert.accept();
+            driver.navigate().back();
+            wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));
+            elements = driver.findElements(By.cssSelector(".mr-2"));
+        }
+        removeAllBookFromCollection();
+
     }
 }
