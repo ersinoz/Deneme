@@ -54,8 +54,10 @@ public class _01_DemoQA extends BaseDriver {
 
     private void removeAllBookFromCollection() {
         driver.navigate().to("https://demoqa.com/profile");
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".justify-content-end .text-right #submit")));
-        driver.findElement(By.cssSelector(".justify-content-end .text-right #submit")).click();
+        WebElement removeAllBooks = driver.findElement(By.cssSelector(".justify-content-end .text-right #submit"));
+        wait.until(ExpectedConditions.elementToBeClickable(removeAllBooks));
+        js.executeScript("arguments[0].scrollIntoView();", removeAllBooks);
+        removeAllBooks.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("closeSmallModal-ok")));
         driver.findElement(By.id("closeSmallModal-ok")).click();
         wait.until(ExpectedConditions.alertIsPresent());
