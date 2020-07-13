@@ -46,7 +46,20 @@ public class _01_DemoQA extends BaseDriver {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         Assert.assertEquals("Book added to your collection.", alert.getText());
+        alert.accept();
+        removeAllBookFromCollection();
+    }
 
+    private void removeAllBookFromCollection() {
+        driver.navigate().to("https://demoqa.com/profile");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".justify-content-end .text-right #submit")));
+        driver.findElement(By.cssSelector(".justify-content-end .text-right #submit")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("closeSmallModal-ok")));
+        driver.findElement(By.id("closeSmallModal-ok")).click();
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        Assert.assertEquals("All Books deleted.", alert.getText());
+        alert.accept();
     }
 
     @Test
