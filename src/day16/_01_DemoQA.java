@@ -37,7 +37,7 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals(username, driver.findElement(By.cssSelector("#userName-value")).getText());
     }
 
-    @Test(priority = 1)
+    @Test(priority = 0)
     void addSingleToToCollectionTestCase() {
         List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
         addBook(elements, new Random().nextInt(elements.size()));
@@ -73,6 +73,12 @@ public class _01_DemoQA extends BaseDriver {
         removeAllBookFromCollection();
 
     }
+
+    @Test
+    void deleteASingleBookTestCase(){}
+
+    @Test
+    void searchForABookTestCase(){}
 
     @BeforeMethod
     void navigateToBooks() {
