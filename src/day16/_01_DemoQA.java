@@ -36,11 +36,7 @@ public class _01_DemoQA extends BaseDriver {
     }
 
     @Test(priority = 1)
-    void addToCollectionTestCase(){
-        // generate a random number up to number of books
-        // add those books to collection
-        // verify that the books you added are the same in the profile
-        // delete all in the end
+    void addSingleToToCollectionTestCase(){
         List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
         WebElement randomElement = elements.get(new Random().nextInt(elements.size()));
         js.executeScript("arguments[0].scrollIntoView();", randomElement);
@@ -51,5 +47,13 @@ public class _01_DemoQA extends BaseDriver {
         Alert alert = driver.switchTo().alert();
         Assert.assertEquals("Book added to your collection.", alert.getText());
 
+    }
+
+    @Test
+    void addSeveralBookToCollectionTestCase(){
+        // generate a random number up to number of books
+        // add those books to collection
+        // verify that the books you added are the same in the profile
+        // delete all in the end
     }
 }
