@@ -29,5 +29,11 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals(username,driver.findElement(By.cssSelector("#userName-value")).getText());
     }
 
-
+    @Test
+    void addToCollectionTestCase(){
+        // generate a random number up to number of books
+        // add those books to collection
+        // verify that the books you added are the same in the profile
+        // delete all in the end
+    }
 }
