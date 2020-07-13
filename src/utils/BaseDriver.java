@@ -1,5 +1,6 @@
 package utils;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -11,13 +12,14 @@ public class BaseDriver {
     protected WebDriver driver;
     protected Actions builder;
     protected WebDriverWait wait;
-
+    protected JavascriptExecutor js;
     @BeforeClass
     protected void setup(){
         System.setProperty("webdriver.chrome.driver", "E:\\projects\\Selenium\\driver\\chromedriver.exe");
         driver = new ChromeDriver();
         builder = new Actions(driver);
         wait = new WebDriverWait(driver, 10);
+        js = (JavascriptExecutor) driver;
     }
 
     @AfterClass

@@ -1,11 +1,16 @@
 package day16;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.BaseDriver;
+
+import java.util.List;
+import java.util.Random;
 
 public class _01_DemoQA extends BaseDriver {
 
@@ -17,9 +22,10 @@ public class _01_DemoQA extends BaseDriver {
         username = "daulet";
         password = "DV@d9FjCm";
         driver.get("https://demoqa.com/books");
+        driver.manage().window().maximize();
     }
 
-    @Test()
+    @Test(priority = 0)
     void loginTestCase() {
         driver.findElement(By.id("login")).click();
         driver.findElement(By.id("userName")).sendKeys(username);
@@ -29,11 +35,21 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals(username,driver.findElement(By.cssSelector("#userName-value")).getText());
     }
 
-    @Test
+    @Test(priority = 1)
     void addToCollectionTestCase(){
         // generate a random number up to number of books
         // add those books to collection
         // verify that the books you added are the same in the profile
         // delete all in the end
+        List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
+        WebElement randomElement = elements.get(new Random().nextInt(elements.size()));
+        js.executeScript("arguments[0].scrollIntoView();", randomElement);
+        randomElement.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".text-right #addNewRecordButton")));
+        driver.findElement(By.cssSelector(".text-right #addNewRecordButton")).click();
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        Assert.assertEquals("Book added to your collection.", alert.getText());
+
     }
 }
