@@ -39,7 +39,7 @@ public class _01_DemoQA extends BaseDriver {
 
     @Test(dependsOnMethods = {"loginTestCase"})
     void addSingleToToCollectionTestCase() {
-        List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
+        List<WebElement> elements = waitAndGetList(By.cssSelector(".mr-2"));
         addBook(elements, new Random().nextInt(elements.size()));
         removeAllBookFromCollection();
     }
@@ -47,7 +47,7 @@ public class _01_DemoQA extends BaseDriver {
     @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void addSeveralBookToCollectionTestCase() {
         // generate a random number up to number of books
-        List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
+        List<WebElement> elements = waitAndGetList(By.cssSelector(".mr-2"));
         int numberOfElementsToAdd = new Random().nextInt(elements.size()) + 1;
         System.out.println("Adding " + numberOfElementsToAdd + " elements!");
         // add those books to collection
@@ -55,17 +55,13 @@ public class _01_DemoQA extends BaseDriver {
         for (int i = 0; i < numberOfElementsToAdd; i++) {
             booksAdded.add(addBook(elements, i));
             driver.navigate().back();
-            wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));
-            elements = driver.findElements(By.cssSelector(".mr-2"));
+            elements = waitAndGetList(By.cssSelector(".mr-2"));
         }
 
         // verify that the books you added are the same in the profile
         driver.navigate().to("https://demoqa.com/profile");
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));
-        elements = driver.findElements(By.cssSelector(".mr-2"));
-        for (WebElement element : elements) {
-            Assert.assertTrue(booksAdded.contains(element.getText()), "The element: " + element.getText() + " is not in expected list " + booksAdded);
-        }
+        elements = waitAndGetList(By.cssSelector(".mr-2"));
+        verifyListContainsAll(elements, booksAdded);
 
         // delete all in the end
         removeAllBookFromCollection();
@@ -75,15 +71,14 @@ public class _01_DemoQA extends BaseDriver {
     @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void deleteASingleBookTestCase() {
         // add a book
-        List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
+        List<WebElement> elements = waitAndGetList(By.cssSelector(".mr-2"));
         addBook(elements, new Random().nextInt(elements.size()));
         // go profile and delete it
         driver.navigate().to("https://demoqa.com/profile");
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));
         driver.findElement(By.id("delete-record-undefined")).click();
         // verify it was deleted
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("closeSmallModal-ok")));
-        driver.findElement(By.id("closeSmallModal-ok")).click();
+        waitAndClick(By.id("closeSmallModal-ok"));
         verifyAlertText("Book deleted.");
     }
 
@@ -93,13 +88,21 @@ public class _01_DemoQA extends BaseDriver {
         String searchTerm = "Js";
         driver.findElement(By.cssSelector("#searchBox")).sendKeys(searchTerm);
         // get the list of books
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));
-        List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
+        List<WebElement> elements = waitAndGetList(By.cssSelector(".mr-2"));
         // very that all books contains the searchTerm
+        verifyAllContainsText(elements, searchTerm);
+    }
+
+    private void verifyAllContainsText(List<WebElement> elements, String searchTerm) {
         for (WebElement element : elements) {
             String elementText = element.getText().toLowerCase();
             Assert.assertTrue(elementText.contains(searchTerm.toLowerCase()), "'"+element.getText() + "' does not contain '" + searchTerm+"'");
         }
+    }
+
+    private List<WebElement> waitAndGetList(By locator) {
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(locator, 0));
+        return driver.findElements(locator);
     }
 
     @BeforeMethod
@@ -108,12 +111,22 @@ public class _01_DemoQA extends BaseDriver {
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));
     }
 
+    private void verifyListContainsAll(List<WebElement> elements, List<String> booksAdded) {
+        for (WebElement element : elements) {
+            Assert.assertTrue(booksAdded.contains(element.getText()), "The element: " + element.getText() + " is not in expected list " + booksAdded);
+        }
+    }
+
     private void removeAllBookFromCollection() {
         driver.navigate().to("https://demoqa.com/profile");
         waitScrollAndClick(By.cssSelector(".justify-content-end .text-right #submit"));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("closeSmallModal-ok")));
-        driver.findElement(By.id("closeSmallModal-ok")).click();
+        waitAndClick(By.id("closeSmallModal-ok"));
         verifyAlertText("All Books deleted.");
+    }
+
+    private void waitAndClick(By locator) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        driver.findElement(locator).click();
     }
 
     private String addBook(List<WebElement> elements, int index) {
