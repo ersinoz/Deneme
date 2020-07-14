@@ -57,4 +57,23 @@ public class ReusableMethods {
         Assert.assertEquals(expectedText, alert.getText());
         alert.accept();
     }
+
+    public String randomPassword(int length){
+        String passwordSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgijklmopqrstuvwxyz0123456789!@#$%^&*()_+~?><";
+        return getRandomString(length, passwordSet);
+    }
+
+    public String randomWord(int length){
+        String passwordSet = "abcdefgijklmopqrstuvwxyz";
+        return getRandomString(length, passwordSet);
+    }
+
+    private String getRandomString(int length, String possibleLetters) {
+        char[] password = new char[length];
+        for (int i = 0; i < length; i++) {
+            int rand = (int) (Math.random() * possibleLetters.length());
+            password[i] = possibleLetters.charAt(rand);
+        }
+        return new String(password);
+    }
 }

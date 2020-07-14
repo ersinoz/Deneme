@@ -8,15 +8,18 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.BaseDriver;
+import utils.ReusableMethods;
 
 public class _02_OpenCartTest extends BaseDriver {
 
     private String email;
     private String password;
+    private ReusableMethods methods;
 
     @BeforeClass
     void goToWebsite() {
-        email = "test12345asda@test.com";
+        methods = new ReusableMethods(wait, driver, js);
+        email = methods.randomWord(10) + "@test.com";
         password = "someRassword123";
         driver.get("https://opencart.abstracta.us/index.php");
         driver.findElement(By.id("details-button")).click();
@@ -57,14 +60,14 @@ public class _02_OpenCartTest extends BaseDriver {
         // TODO: find correct condition for this
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
         Select region = new Select(driver.findElement(By.cssSelector("#input-zone")));
-        country.selectByIndex(2);
+        region.selectByIndex(2);
         driver.findElement(By.cssSelector("#input-password")).sendKeys(password);
         driver.findElement(By.cssSelector("#input-confirm")).sendKeys(password);
         driver.findElement(By.cssSelector("[name=\"agree\"]")).click();
         driver.findElement(By.cssSelector("[value=\"Continue\"]")).click();
         //verify that you are logged in
         String title = driver.getTitle();
-        Assert.assertEquals(title, "My Account");
+        Assert.assertEquals(title, "Your Account Has Been Created!");
 
         driver.findElement(By.cssSelector("a.list-group-item[href*=logout]")).click();
 
