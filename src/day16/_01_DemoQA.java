@@ -73,7 +73,7 @@ public class _01_DemoQA extends BaseDriver {
     }
 
     @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
-    void deleteASingleBookTestCase(){
+    void deleteASingleBookTestCase() {
         // add a book
         List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
         addBook(elements, new Random().nextInt(elements.size()));
@@ -91,10 +91,18 @@ public class _01_DemoQA extends BaseDriver {
     }
 
     @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
-    void searchForABookTestCase(){
+    void searchForABookTestCase() {
         // type searchTerm into search box
+        String searchTerm = "Js";
+        driver.findElement(By.cssSelector("#searchBox")).sendKeys(searchTerm);
         // get the list of books
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));
+        List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
         // very that all books contains the searchTerm
+        for (WebElement element : elements) {
+            String elementText = element.getText().toLowerCase();
+            Assert.assertTrue(elementText.contains(searchTerm.toLowerCase()), "'"+element.getText() + "' does not contain '" + searchTerm+"'");
+        }
     }
 
     @BeforeMethod
