@@ -20,7 +20,7 @@ public class _02_OpenCartTest extends BaseDriver {
     void goToWebsite() {
         methods = new ReusableMethods(wait, driver, js);
         email = methods.randomWord(10) + "@test.com";
-        password = "someRassword123";
+        password = methods.randomPassword(10);
         driver.get("https://opencart.abstracta.us/index.php");
         driver.findElement(By.id("details-button")).click();
         driver.findElement(By.id("proceed-link")).click();
