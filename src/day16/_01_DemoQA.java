@@ -102,10 +102,13 @@ public class _01_DemoQA extends BaseDriver {
         // verify that "No rows found" is present
     }
 
-    @Test
+    @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void searchNegativeTestCase(){
         // search for random string "agvq34"
+        String searchTerm = "agvq34";
+        driver.findElement(By.cssSelector("#searchBox")).sendKeys(searchTerm);
         // verify that "No rows found" is present
+        Assert.assertEquals("No rows found",driver.findElement(By.cssSelector(".rt-noData")).getText());
     }
 
     @Test
