@@ -22,15 +22,26 @@ public class ReusableMethods {
 
     public void verifyAllContainsText(List<WebElement> elements, String searchTerm) {
         for (WebElement element : elements) {
-            String elementText = element.getText().toLowerCase();
-            Assert.assertTrue(elementText.contains(searchTerm.toLowerCase()), "'"+element.getText() + "' does not contain '" + searchTerm+"'");
+            verifyOneContainsText(element, searchTerm);
         }
+    }
+
+    public void verifyOneContainsText(WebElement element, String searchTerm) {
+        String elementText = element.getText().toLowerCase();
+        Assert.assertTrue(elementText.contains(searchTerm.toLowerCase()), "'" + element.getText() + "' does not contain '" + searchTerm + "'");
+    }
+
+    public void clearAndSendKeys(By locator, String text) {
+        WebElement element = driver.findElement(locator);
+        element.clear();
+        element.sendKeys(text);
     }
 
     public List<WebElement> waitAndGetList(By locator) {
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(locator, 0));
         return driver.findElements(locator);
     }
+
     public void verifyListContainsAll(List<WebElement> elements, List<String> booksAdded) {
         for (WebElement element : elements) {
             Assert.assertTrue(booksAdded.contains(element.getText()), "The element: " + element.getText() + " is not in expected list " + booksAdded);
@@ -41,7 +52,6 @@ public class ReusableMethods {
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         driver.findElement(locator).click();
     }
-
 
 
     public void waitScrollAndClick(By selector) {
@@ -58,12 +68,12 @@ public class ReusableMethods {
         alert.accept();
     }
 
-    public String randomPassword(int length){
+    public String randomPassword(int length) {
         String passwordSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgijklmopqrstuvwxyz0123456789!@#$%^&*()_+~?><";
         return getRandomString(length, passwordSet);
     }
 
-    public String randomWord(int length){
+    public String randomWord(int length) {
         String passwordSet = "abcdefgijklmopqrstuvwxyz";
         return getRandomString(length, passwordSet);
     }

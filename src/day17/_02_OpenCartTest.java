@@ -44,7 +44,7 @@ public class _02_OpenCartTest extends BaseDriver {
         Assert.assertEquals(title, "My Account");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, enabled = false)
     void createAccountTest() {
         driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/register");
 
@@ -80,9 +80,7 @@ public class _02_OpenCartTest extends BaseDriver {
         driver.findElement(By.cssSelector("input[name=\"newsletter\"][value=\"1\"]")).click();
         driver.findElement(By.cssSelector("input[value=\"Continue\"]")).click();
 
-        String text = driver.findElement(By.cssSelector(".alert-success")).getText();
-
-        Assert.assertTrue(text.contains("Success"), "Text doesnt contain success!");
+        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "Success");
     }
 
     @Test(dependsOnMethods = {"loginTestCase"})
@@ -91,25 +89,20 @@ public class _02_OpenCartTest extends BaseDriver {
         driver.findElement(By.cssSelector("input[name=\"newsletter\"][value=\"0\"]")).click();
         driver.findElement(By.cssSelector("input[value=\"Continue\"]")).click();
 
-        String text = driver.findElement(By.cssSelector(".alert-success")).getText();
-
-        Assert.assertTrue(text.contains("Success"), "Text doesnt contain success!");
+        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "Success");
     }
 
     @Test(dependsOnMethods = {"loginTestCase"})
     void editAccountTestCase() {
         driver.findElement(By.cssSelector("a[href*=edit]")).click();
-        WebElement firstName = driver.findElement(By.id("input-firstname"));
-        firstName.clear();
-        firstName.sendKeys("new first name");
 
-        WebElement lastName = driver.findElement(By.id("input-lastname"));
-        lastName.clear();
-        lastName.sendKeys("new last name");
+        methods.clearAndSendKeys(By.id("input-firstname"), "new first name");
+        methods.clearAndSendKeys(By.id("input-lastname"), "new last name");
 
         driver.findElement(By.cssSelector("input[value=\"Continue\"]")).click();
 
-        String text = driver.findElement(By.cssSelector(".alert-success")).getText();
-        Assert.assertTrue(text.contains("Success"), "Text doesnt contain success!");
+        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "Success");
     }
+
+
 }
