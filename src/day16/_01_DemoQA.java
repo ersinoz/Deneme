@@ -92,7 +92,9 @@ public class _01_DemoQA extends BaseDriver {
 
     @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void searchForABookTestCase(){
-
+        // type searchTerm into search box
+        // get the list of books
+        // very that all books contains the searchTerm
     }
 
     @BeforeMethod
