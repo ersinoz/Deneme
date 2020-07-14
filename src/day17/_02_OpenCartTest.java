@@ -58,7 +58,6 @@ public class _02_OpenCartTest extends BaseDriver {
         Select country = new Select(driver.findElement(By.cssSelector("#input-country")));
         country.selectByIndex(3);
         WebDriverWait wait = new WebDriverWait(driver, 12);
-        // TODO: find correct condition for this
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
         Select region = new Select(driver.findElement(By.cssSelector("#input-zone")));
         region.selectByIndex(2);
