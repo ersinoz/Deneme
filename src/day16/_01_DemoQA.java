@@ -27,7 +27,7 @@ public class _01_DemoQA extends BaseDriver {
         driver.manage().window().maximize();
     }
 
-    @BeforeClass
+    @Test
     void loginTestCase() {
         driver.findElement(By.id("login")).click();
         driver.findElement(By.id("userName")).sendKeys(username);
@@ -37,16 +37,14 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals(username, driver.findElement(By.cssSelector("#userName-value")).getText());
     }
 
-    @Test(priority = 0)
+    @Test(dependsOnMethods = {"loginTestCase"})
     void addSingleToToCollectionTestCase() {
         List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
         addBook(elements, new Random().nextInt(elements.size()));
         removeAllBookFromCollection();
     }
 
-
-
-    @Test(priority = 1)
+    @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void addSeveralBookToCollectionTestCase() {
         // generate a random number up to number of books
         List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
@@ -74,10 +72,10 @@ public class _01_DemoQA extends BaseDriver {
 
     }
 
-    @Test
+    @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void deleteASingleBookTestCase(){}
 
-    @Test
+    @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void searchForABookTestCase(){}
 
     @BeforeMethod
