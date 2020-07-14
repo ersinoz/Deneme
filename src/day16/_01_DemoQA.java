@@ -111,10 +111,12 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals("No rows found",driver.findElement(By.cssSelector(".rt-noData")).getText());
     }
 
-    @Test
+    @Test(priority = 2, dependsOnMethods = {"loginTestCase"})
     void logoutTestCase(){
         // click on logout
+        driver.findElement(By.cssSelector("#submit")).click();
         // verify you are logout by checking url is "https://demoqa.com/login"
+        Assert.assertEquals("https://demoqa.com/login",driver.getCurrentUrl());
     }
 
     @BeforeMethod
