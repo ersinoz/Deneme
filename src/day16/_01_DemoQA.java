@@ -95,12 +95,23 @@ public class _01_DemoQA extends BaseDriver {
         methods.verifyAllContainsText(elements, searchTerm);
     }
 
-    @Test
+    @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
     void deleteAllTestCase() {
-        // add random number of books
-        // navigate to profile
-        // click on delete all
+        addSeveralBookToCollectionTestCase();
+        Assert.assertEquals("No rows found",driver.findElement(By.cssSelector(".rt-noData")).getText());
         // verify that "No rows found" is present
+    }
+
+    @Test
+    void searchNegativeTestCase(){
+        // search for random string "agvq34"
+        // verify that "No rows found" is present
+    }
+
+    @Test
+    void logoutTestCase(){
+        // click on logout
+        // verify you are logout by checking url is "https://demoqa.com/login"
     }
 
     @BeforeMethod
