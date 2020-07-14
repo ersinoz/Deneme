@@ -73,10 +73,27 @@ public class _01_DemoQA extends BaseDriver {
     }
 
     @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
-    void deleteASingleBookTestCase(){}
+    void deleteASingleBookTestCase(){
+        // add a book
+        List<WebElement> elements = driver.findElements(By.cssSelector(".mr-2"));
+        addBook(elements, new Random().nextInt(elements.size()));
+        // go profile and delete it
+        driver.navigate().to("https://demoqa.com/profile");
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));
+        driver.findElement(By.id("delete-record-undefined")).click();
+        // verify it was deleted
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("closeSmallModal-ok")));
+        driver.findElement(By.id("closeSmallModal-ok")).click();
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        Assert.assertEquals("Book deleted.", alert.getText());
+        alert.accept();
+    }
 
     @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
-    void searchForABookTestCase(){}
+    void searchForABookTestCase(){
+
+    }
 
     @BeforeMethod
     void navigateToBooks() {
