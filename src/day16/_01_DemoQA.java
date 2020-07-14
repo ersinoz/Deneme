@@ -95,7 +95,13 @@ public class _01_DemoQA extends BaseDriver {
         methods.verifyAllContainsText(elements, searchTerm);
     }
 
-
+    @Test
+    void deleteAllTestCase() {
+        // add random number of books
+        // navigate to profile
+        // click on delete all
+        // verify that "No rows found" is present
+    }
 
     @BeforeMethod
     void navigateToBooks() {
