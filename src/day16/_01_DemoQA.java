@@ -84,10 +84,7 @@ public class _01_DemoQA extends BaseDriver {
         // verify it was deleted
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("closeSmallModal-ok")));
         driver.findElement(By.id("closeSmallModal-ok")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-        Assert.assertEquals("Book deleted.", alert.getText());
-        alert.accept();
+        verifyAlertText("Book deleted.");
     }
 
     @Test(priority = 1, dependsOnMethods = {"loginTestCase"})
@@ -113,32 +110,34 @@ public class _01_DemoQA extends BaseDriver {
 
     private void removeAllBookFromCollection() {
         driver.navigate().to("https://demoqa.com/profile");
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".justify-content-end .text-right #submit")));
-        WebElement removeAllBooks = driver.findElement(By.cssSelector(".justify-content-end .text-right #submit"));
-        js.executeScript("arguments[0].scrollIntoView();", removeAllBooks);
-        removeAllBooks.click();
+        waitScrollAndClick(By.cssSelector(".justify-content-end .text-right #submit"));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("closeSmallModal-ok")));
         driver.findElement(By.id("closeSmallModal-ok")).click();
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-        Assert.assertEquals("All Books deleted.", alert.getText());
-        alert.accept();
+        verifyAlertText("All Books deleted.");
     }
 
     private String addBook(List<WebElement> elements, int index) {
         WebElement element = elements.get(index);
         js.executeScript("arguments[0].scrollIntoView();", element);
         element.click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".text-right #addNewRecordButton")));
 
-        WebElement addBookButton = driver.findElement(By.cssSelector(".text-right #addNewRecordButton"));
-        js.executeScript("arguments[0].scrollIntoView();", addBookButton);
-        addBookButton.click();
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-        Assert.assertEquals("Book added to your collection.", alert.getText());
-        alert.accept();
+        waitScrollAndClick(By.cssSelector(".text-right #addNewRecordButton"));
+        verifyAlertText("Book added to your collection.");
 
         return driver.findElement(By.cssSelector("#title-wrapper #userName-value")).getText();
+    }
+
+    private void waitScrollAndClick(By selector) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(selector));
+        WebElement element = driver.findElement(selector);
+        js.executeScript("arguments[0].scrollIntoView();", element);
+        element.click();
+    }
+
+    private void verifyAlertText(String expectedText) {
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        Assert.assertEquals(expectedText, alert.getText());
+        alert.accept();
     }
 }
