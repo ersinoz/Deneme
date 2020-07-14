@@ -19,14 +19,14 @@ public class _02_OpenCartTest extends BaseDriver {
     @BeforeClass
     void goToWebsite() {
         methods = new ReusableMethods(wait, driver, js);
-        email = methods.randomWord(10) + "@test.com";
-        password = methods.randomPassword(10);
+        email = "test12345asda@test.com"; //methods.randomWord(10) + "@test.com";
+        password = "someRassword123"; //methods.randomPassword(10);
         driver.get("https://opencart.abstracta.us/index.php");
         driver.findElement(By.id("details-button")).click();
         driver.findElement(By.id("proceed-link")).click();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, enabled = true)
     void loginTestCase() {
         driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/login");
         // test12345asd@test.com
@@ -73,4 +73,25 @@ public class _02_OpenCartTest extends BaseDriver {
 
     }
 
+    @Test(dependsOnMethods = {"loginTestCase"})
+    void subscribeTestCase() {
+        driver.findElement(By.cssSelector("a[href*=newsletter]")).click();
+        driver.findElement(By.cssSelector("input[name=\"newsletter\"][value=\"1\"]")).click();
+        driver.findElement(By.cssSelector("input[value=\"Continue\"]")).click();
+
+        String text = driver.findElement(By.cssSelector(".alert-success")).getText();
+
+        Assert.assertTrue(text.contains("Success"), "Text doesnt contain success!");
+    }
+
+    @Test(dependsOnMethods = {"loginTestCase"})
+    void unSubscribeTestCase() {
+        driver.findElement(By.cssSelector("a[href*=newsletter]")).click();
+        driver.findElement(By.cssSelector("input[name=\"newsletter\"][value=\"0\"]")).click();
+        driver.findElement(By.cssSelector("input[value=\"Continue\"]")).click();
+
+        String text = driver.findElement(By.cssSelector(".alert-success")).getText();
+
+        Assert.assertTrue(text.contains("Success"), "Text doesnt contain success!");
+    }
 }
