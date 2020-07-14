@@ -1,6 +1,7 @@
 package day17;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -92,6 +93,23 @@ public class _02_OpenCartTest extends BaseDriver {
 
         String text = driver.findElement(By.cssSelector(".alert-success")).getText();
 
+        Assert.assertTrue(text.contains("Success"), "Text doesnt contain success!");
+    }
+
+    @Test(dependsOnMethods = {"loginTestCase"})
+    void editAccountTestCase() {
+        driver.findElement(By.cssSelector("a[href*=edit]")).click();
+        WebElement firstName = driver.findElement(By.id("input-firstname"));
+        firstName.clear();
+        firstName.sendKeys("new first name");
+
+        WebElement lastName = driver.findElement(By.id("input-lastname"));
+        lastName.clear();
+        lastName.sendKeys("new last name");
+
+        driver.findElement(By.cssSelector("input[value=\"Continue\"]")).click();
+
+        String text = driver.findElement(By.cssSelector(".alert-success")).getText();
         Assert.assertTrue(text.contains("Success"), "Text doesnt contain success!");
     }
 }
