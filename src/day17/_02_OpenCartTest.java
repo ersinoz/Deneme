@@ -27,7 +27,7 @@ public class _02_OpenCartTest extends BaseDriver {
         driver.findElement(By.id("proceed-link")).click();
     }
 
-    @Test(priority = 2, enabled = true)
+    @Test()
     void loginTestCase() {
         driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/login");
         // test12345asd@test.com
