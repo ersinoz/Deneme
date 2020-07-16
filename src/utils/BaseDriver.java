@@ -7,13 +7,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 
 public class BaseDriver {
     protected WebDriver driver;
     protected Actions builder;
     protected WebDriverWait wait;
     protected JavascriptExecutor js;
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     protected void setup(){
         System.setProperty("webdriver.chrome.driver", "E:\\projects\\Selenium\\driver\\chromedriver.exe");
         driver = new ChromeDriver();
@@ -22,8 +23,8 @@ public class BaseDriver {
         js = (JavascriptExecutor) driver;
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     protected void closeDriver() {
-//        driver.quit();
+        driver.quit();
     }
 }

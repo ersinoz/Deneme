@@ -20,7 +20,7 @@ public class _01_DemoQA extends BaseDriver {
     private String password;
     private ReusableMethods methods;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     void goToWebsite() {
         username = "daulet";
         password = "DV@d9FjCm";
@@ -29,7 +29,7 @@ public class _01_DemoQA extends BaseDriver {
         methods = new ReusableMethods(wait, driver, js);
     }
 
-    @Test
+    @Test(groups = {"smoke"})
     void loginTestCase() {
         driver.findElement(By.id("login")).click();
         driver.findElement(By.id("userName")).sendKeys(username);
@@ -111,7 +111,7 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals("No rows found",driver.findElement(By.cssSelector(".rt-noData")).getText());
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = "smoke")
     void logoutTestCase(){
         // click on logout
         driver.findElement(By.cssSelector("#submit")).click();
@@ -119,7 +119,7 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals("https://demoqa.com/login",driver.getCurrentUrl());
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     void navigateToBooks() {
         driver.navigate().to("https://demoqa.com/books");
         wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".mr-2"), 0));

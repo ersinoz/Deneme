@@ -16,7 +16,7 @@ public class _02_OpenCartTest extends BaseDriver {
     private String password;
     private ReusableMethods methods;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     void goToWebsite() {
         methods = new ReusableMethods(wait, driver, js);
         email = "test12345asda@test.com"; //methods.randomWord(10) + "@test.com";
@@ -26,7 +26,7 @@ public class _02_OpenCartTest extends BaseDriver {
         driver.findElement(By.id("proceed-link")).click();
     }
 
-    @Test()
+    @Test(groups = "smoke")
     void loginTestCase() {
         driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/login");
         // test12345asd@test.com
