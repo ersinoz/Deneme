@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="SimpleSuite">
+    <test name="SimpleTestNG">
+        <classes>
+            <class name="day18._02_SimpleTestNGTests">
+                <methods>
+                    <exclude name="testCase5"></exclude>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
