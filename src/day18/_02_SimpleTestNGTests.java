@@ -29,4 +29,15 @@ public class _02_SimpleTestNGTests  extends CommonClass {
         System.out.println("Successful test case 4");
     }
 
+    @Test(groups = {"success", "fail"})
+    void testCase5() {
+        System.out.println("Fail test case 5");
+        Assert.fail("Fail test case 5");
+    }
+
+    @Test(groups = {"fail"})
+    void testCase6() {
+        System.out.println("Fail test case 6");
+        Assert.fail("Fail test case 6");
+    }
 }
