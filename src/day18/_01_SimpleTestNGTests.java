@@ -9,13 +9,13 @@ import java.util.Random;
 
 public class _01_SimpleTestNGTests extends CommonClass {
 
-    @Test
+    @Test(groups = {"success"})
     void testCase1() {
         System.out.println("Successful test case 1");
         Assert.assertEquals("test", "test");
     }
 
-    @Test
+    @Test(groups = {"fail"})
     void testCase2() {
         boolean failCondition = true;
         if(failCondition) {
@@ -23,7 +23,7 @@ public class _01_SimpleTestNGTests extends CommonClass {
         }
     }
 
-    @Test
+    @Test(groups = {"fail", "skip"})
     void testCase3() {
         System.out.println("Sometimes successful test case 3");
         boolean dataIsAvailable = new Random().nextBoolean();
@@ -33,7 +33,7 @@ public class _01_SimpleTestNGTests extends CommonClass {
     }
 
     String someText;
-    @Test
+    @Test(groups = {"fail"})
     void testCase4() {
         Assert.assertNotNull(someText);
     }
