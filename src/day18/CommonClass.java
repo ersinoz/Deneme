@@ -3,42 +3,42 @@ package day18;
 import org.testng.annotations.*;
 
 public class CommonClass {
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     void setup() {
         System.out.println("Before each method!");
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     void cleanUp(){
         System.out.println("After each method!");
     }
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     void beforeClass() {
         System.out.println("Before class!");
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     void afterClass() {
         System.out.println("After Class!");
     }
 
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     void beforeTest() {
         System.out.println("Before Test!");
     }
 
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     void afterTest() {
         System.out.println("After Test!");
     }
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     void beforeSuite() {
         System.out.println("Before Suite!");
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     void afterSuite() {
         System.out.println("After Suite!");
     }
