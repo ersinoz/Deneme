@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="SmokeSuite">
+    <test name="SmokeTest">
+        <groups>
+            <run>
+                <include name="functional"></include>
+                <exclude name="longRunning"></exclude>
+            </run>
+        </groups>
+        <classes>
+            <class name="day18.practiceClasses._01_DemoQA"></class>
+            <class name="day18.practiceClasses._02_OpenCartTest"></class>
+        </classes>
+    </test>
+</suite>

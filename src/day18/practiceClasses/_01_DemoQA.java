@@ -46,7 +46,7 @@ public class _01_DemoQA extends BaseDriver {
         removeAllBookFromCollection();
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional", "longRunning"})
     void addSeveralBookToCollectionTestCase() {
         // generate a random number up to number of books
         List<WebElement> elements = methods.waitAndGetList(By.cssSelector(".mr-2"));
@@ -95,7 +95,7 @@ public class _01_DemoQA extends BaseDriver {
         methods.verifyAllContainsText(elements, searchTerm);
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional", "longRunning"})
     void deleteAllTestCase() {
         addSeveralBookToCollectionTestCase();
         Assert.assertEquals("No rows found",driver.findElement(By.cssSelector(".rt-noData")).getText());
