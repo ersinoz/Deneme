@@ -11,7 +11,7 @@ import utils.BaseDriver;
 import java.util.List;
 
 public class _03_HomeworkPracticeHandlingDropdown extends BaseDriver {
-    @Test
+    @Test(groups = "smoke")
     public void mainTestCase() {
         driver.get("https://pwa-woo.wpmobilepack.com/#/product/1297"); //with checkboxes
 //        driver.get("https://pwa-woo.wpmobilepack.com/#/product/1295"); //without checkboxes

@@ -17,7 +17,7 @@ public class _04_HomeworkPractice extends BaseDriver {
 
     List<Integer> randomItemsAdded = new ArrayList<>();
 
-    @Test
+    @Test(groups = "functional")
     public void main() {
         driver.get("https://pwa-woo.wpmobilepack.com/#/category/88");
         WebDriverWait wait = new WebDriverWait(driver, 5); // the timeout of 5 seconds

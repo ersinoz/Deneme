@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Task03">
+    <test name="SimpleTestNG">
+        <groups>
+            <run>
+                <include name="smoke"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="day18.practiceClasses._01_DemoQA"/>
+            <class name="day18.practiceClasses._02_OpenCartTest"/>
+            <class name="day18.practiceClasses._03_HomeworkPracticeHandlingDropdown"/>
+            <class name="day18.practiceClasses._04_HomeworkPractice"/>
+        </classes>
+    </test>
+</suite>
