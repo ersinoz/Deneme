@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 
 import java.util.Random;
 
-public class _02_SimpleTestNGTests {
+public class _02_SimpleTestNGTests  extends CommonClass {
 
     @Test
     void testCase1() {

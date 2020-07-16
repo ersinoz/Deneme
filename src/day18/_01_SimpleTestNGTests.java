@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 
 import java.util.Random;
 
-public class _01_SimpleTestNGTests {
+public class _01_SimpleTestNGTests extends CommonClass {
 
     @Test
     void testCase1() {
@@ -38,23 +38,5 @@ public class _01_SimpleTestNGTests {
         Assert.assertNotNull(someText);
     }
 
-    @BeforeMethod
-    void setup() {
-        System.out.println("Before each method!");
-    }
 
-    @AfterMethod
-    void cleanUp(){
-        System.out.println("After each method!");
-    }
-
-    @BeforeClass
-    void beforeClass() {
-        System.out.println("Before class!");
-    }
-
-    @AfterClass
-    void afterClass() {
-        System.out.println("After Class!");
-    }
 }
