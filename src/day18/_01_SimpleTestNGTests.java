@@ -43,5 +43,9 @@ public class _01_SimpleTestNGTests extends CommonClass {
         Assert.assertNotNull(someText);
     }
 
+    @Test(dependsOnMethods = {"testCase4"})
+    void alwaysSkippedCase() {
+        System.out.println("Because testCase4 always fails!");
+    }
 
 }
