@@ -39,14 +39,14 @@ public class _01_DemoQA extends BaseDriver {
         Assert.assertEquals(username, driver.findElement(By.cssSelector("#userName-value")).getText());
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
     void addSingleToToCollectionTestCase() {
         List<WebElement> elements = methods.waitAndGetList(By.cssSelector(".mr-2"));
         addBook(elements, new Random().nextInt(elements.size()));
         removeAllBookFromCollection();
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
     void addSeveralBookToCollectionTestCase() {
         // generate a random number up to number of books
         List<WebElement> elements = methods.waitAndGetList(By.cssSelector(".mr-2"));
@@ -70,7 +70,7 @@ public class _01_DemoQA extends BaseDriver {
 
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
     void deleteASingleBookTestCase() {
         // add a book
         List<WebElement> elements = methods.waitAndGetList(By.cssSelector(".mr-2"));
@@ -84,7 +84,7 @@ public class _01_DemoQA extends BaseDriver {
         methods.verifyAlertText("Book deleted.");
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
     void searchForABookTestCase() {
         // type searchTerm into search box
         String searchTerm = "Js";
@@ -95,14 +95,14 @@ public class _01_DemoQA extends BaseDriver {
         methods.verifyAllContainsText(elements, searchTerm);
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
     void deleteAllTestCase() {
         addSeveralBookToCollectionTestCase();
         Assert.assertEquals("No rows found",driver.findElement(By.cssSelector(".rt-noData")).getText());
         // verify that "No rows found" is present
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
     void searchNegativeTestCase(){
         // search for random string "agvq34"
         String searchTerm = "agvq34";

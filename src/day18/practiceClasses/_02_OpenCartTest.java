@@ -72,7 +72,7 @@ public class _02_OpenCartTest extends BaseDriver {
 
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
     void subscribeTestCase() {
         driver.findElement(By.cssSelector("a[href*=newsletter]")).click();
         driver.findElement(By.cssSelector("input[name=\"newsletter\"][value=\"1\"]")).click();
@@ -81,7 +81,7 @@ public class _02_OpenCartTest extends BaseDriver {
         methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "Success");
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
     void unSubscribeTestCase() {
         driver.findElement(By.cssSelector("a[href*=newsletter]")).click();
         driver.findElement(By.cssSelector("input[name=\"newsletter\"][value=\"0\"]")).click();
@@ -90,7 +90,7 @@ public class _02_OpenCartTest extends BaseDriver {
         methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "Success");
     }
 
-    @Test(dependsOnMethods = {"loginTestCase"})
+    @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
     void editAccountTestCase() {
         driver.findElement(By.cssSelector("a[href*=edit]")).click();
 
