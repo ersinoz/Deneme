@@ -23,13 +23,18 @@ public class _01_SimpleTestNGTests extends CommonClass {
         }
     }
 
-    @Test(groups = {"fail", "skip"})
+    @Test(groups = {"success", "skip"})
     void testCase3() {
         System.out.println("Sometimes successful test case 3");
         boolean dataIsAvailable = new Random().nextBoolean();
         if(!dataIsAvailable) {
             throw new SkipException("Data required for test is not available!");
         }
+    }
+
+    @Test(dependsOnMethods = {"testCase3"})
+    void dataTestCase() {
+        System.out.println("DataTest is succesful!");
     }
 
     String someText;
