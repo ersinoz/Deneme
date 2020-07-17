@@ -31,6 +31,6 @@ public class BaseDriver {
 
     @AfterClass(alwaysRun = true)
     protected void closeDriver() {
-//        driver.quit();
+        driver.quit();
     }
 }

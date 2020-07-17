@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="SimpleTestSuite">
+    <parameter name="username" value="daulet"></parameter>
+    <parameter name="password" value="DV@d9FjCm"></parameter>
+    <test name="SimpleTestNG">
+        <classes>
+            <class name="day19._07_DemoQAParameterized"></class>
+        </classes>
+    </test>
+</suite>

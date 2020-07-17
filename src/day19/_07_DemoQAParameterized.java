@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import utils.BaseDriver;
 import utils.ReusableMethods;
@@ -22,9 +23,10 @@ public class _07_DemoQAParameterized extends BaseDriver {
     // parameterize username and password
     // create and xml where you set the username and password
     @BeforeClass(alwaysRun = true)
-    void goToWebsite() {
-        username = "daulet";
-        password = "DV@d9FjCm";
+    @Parameters({"username", "password"})
+    void goToWebsite(String u, String p) {
+        this.username = u;
+        this.password = p;
         driver.get("https://demoqa.com/books");
         driver.manage().window().maximize();
         methods = new ReusableMethods(wait, driver, js);
