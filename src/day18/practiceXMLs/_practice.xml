@@ -5,6 +5,10 @@
     <test name="SimpleTestNG">
         <classes>
             <class name="day18.practiceClasses._Practice1"></class>
+        </classes>
+    </test>
+    <test name="SimpleTestNG2">
+        <classes>
             <class name="day18.practiceClasses._Practice2"></class>
         </classes>
     </test>
