@@ -22,8 +22,13 @@ public class _02_OpenCartTest extends BaseDriver {
         email = "test12345asda@test.com"; //methods.randomWord(10) + "@test.com";
         password = "someRassword123"; //methods.randomPassword(10);
         driver.get("https://opencart.abstracta.us/index.php");
-        driver.findElement(By.id("details-button")).click();
-        driver.findElement(By.id("proceed-link")).click();
+        try {
+            driver.findElement(By.id("details-button")).click();
+            driver.findElement(By.id("proceed-link")).click();
+        } catch (Exception e) {
+            // this means there's no "Your connection is not private" page!
+        }
+
     }
 
     @Test(groups = "smoke")
