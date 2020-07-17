@@ -20,5 +20,16 @@ public class _04_MultipleParameterWithDataProviderTest {
         };
     }
 
+    @Test(dataProvider = "dataProvider")
+    void testCase2(String name, Integer age) {
+        System.out.println(name + " is " + age + " year old!");
+    }
 
+    @DataProvider(name = "dataProvider")
+    public Object[][] data2() {
+        return new Object[][]{
+                {"cedric", 23},
+                {"anne", 21},
+        };
+    }
 }
