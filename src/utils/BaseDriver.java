@@ -6,10 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 public class BaseDriver {
     protected WebDriver driver;
@@ -19,7 +16,7 @@ public class BaseDriver {
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"browser"})
-    protected void setup(String browser) {
+    protected void setup(@Optional("chrome") String browser) {
         if (browser.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "E:\\projects\\Selenium\\driver\\chromedriver.exe");
             driver = new ChromeDriver();
@@ -34,6 +31,6 @@ public class BaseDriver {
 
     @AfterClass(alwaysRun = true)
     protected void closeDriver() {
-//        driver.quit();
+        driver.quit();
     }
 }
