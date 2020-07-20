@@ -153,4 +153,28 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
     // task3
     // edit the address
     // verify edition, by checking success message and verifyAtLeastOneContainsText()
+    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
+    void editAddress(){
+        driver.findElement(By.cssSelector("#column-right a[href*='account/address']")).click();
+        wait.until(ExpectedConditions.titleIs("Address Book"));
+
+        // .table-hover .btn-info gives a list
+        List<WebElement> editButtons = driver.findElements(By.cssSelector(".table-hover .btn-info"));
+        // select last element to edit,
+        editButtons.get(editButtons.size() - 1).click();
+
+        String editFirstName = "edit first name";
+        methods.clearAndSendKeys(By.id("input-firstname"), editFirstName);
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
+
+        driver.findElement(By.cssSelector(".pull-right .btn-primary")).click();
+
+        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "success");
+
+        List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
+        methods.verifyAtLeastOneContainsText(elements, editFirstName);
+
+
+    }
 }
