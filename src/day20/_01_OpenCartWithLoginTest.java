@@ -1,6 +1,7 @@
 package day20;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,6 +12,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import utils.BaseDriver;
 import utils.ReusableMethods;
+
+import java.util.List;
 
 public class _01_OpenCartWithLoginTest extends OpenCartDriver {
 
@@ -84,6 +87,7 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
 
             driver.findElement(By.cssSelector("a.list-group-item[href*=logout]")).click();
         } else {
+            // TODO: throw skipException instead
             System.out.println("Using existing account");
         }
     }
@@ -124,4 +128,26 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
     // fill in the form
     // click on "Continue"
     // validate that new address was created
+    @Test()
+    void editAddressBook(){
+        loginTestCase();
+        driver.findElement(By.cssSelector("#column-right a[href*='account/address']")).click();
+        wait.until(ExpectedConditions.titleIs("Address Book"));
+        driver.findElement(By.cssSelector(".pull-right .btn-primary")).click();
+        String firstName = "Ayse";
+        driver.findElement(By.cssSelector("#input-firstname")).sendKeys(firstName);
+        driver.findElement(By.cssSelector("#input-lastname")).sendKeys("Ayse");
+        driver.findElement(By.cssSelector("#input-address-1")).sendKeys("1102 Slade");
+        driver.findElement(By.cssSelector("#input-city")).sendKeys("Columbus");
+        driver.findElement(By.cssSelector("#input-postcode")).sendKeys("42356");
+        Select select= new Select(driver.findElement(By.id("input-country")));
+        select.selectByIndex(2); // TODO: use random
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
+        Select select1= new Select(driver.findElement(By.id("input-zone")));
+        select1.selectByIndex(2);  // TODO: use random
+        driver.findElement(By.cssSelector(".pull-right .btn-primary")).click();
+        Assert.assertEquals("Address Book Entries",driver.findElement(By.cssSelector("#content>h2")).getText());
+        List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
+        methods.verifyAtLeastOneContainsText(elements, firstName);
+    }
 }

@@ -27,6 +27,19 @@ public class ReusableMethods {
         }
     }
 
+    public void verifyAtLeastOneContainsText(List<WebElement> elements, String searchTerm) {
+        Assert.assertFalse(elements.isEmpty(), "The list of elements is empty, cannot find searchTerm!");
+        boolean found = false;
+        for (WebElement element : elements) {
+            String elementText = element.getText().toLowerCase();
+            if(elementText.contains(searchTerm.toLowerCase())){
+                found = true;
+                break;
+            }
+        }
+        Assert.assertTrue(found, "The list doesn't contain any search term: " + searchTerm);
+    }
+
     public void verifyOneContainsText(WebElement element, String searchTerm) {
         String elementText = element.getText().toLowerCase();
         System.out.println("elementText "+elementText);
