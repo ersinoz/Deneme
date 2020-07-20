@@ -118,5 +118,10 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
         methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "Success");
     }
 
-
+    // task2
+    // click on "Address book"
+    // click on "New Address"
+    // fill in the form
+    // click on "Continue"
+    // validate that new address was created
 }
