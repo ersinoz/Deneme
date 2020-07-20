@@ -59,7 +59,7 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
         Assert.assertEquals(title, "My Account");
     }
 
-    @Test()
+    @Test(alwaysRun = true)
     void createAccountTest() {
         if(this.useRandom) {
             driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/register");
@@ -128,9 +128,8 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
     // fill in the form
     // click on "Continue"
     // validate that new address was created
-    @Test()
+    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
     void editAddressBook(){
-        loginTestCase();
         driver.findElement(By.cssSelector("#column-right a[href*='account/address']")).click();
         wait.until(ExpectedConditions.titleIs("Address Book"));
         driver.findElement(By.cssSelector(".pull-right .btn-primary")).click();
