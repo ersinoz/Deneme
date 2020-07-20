@@ -10,25 +10,15 @@ import org.testng.annotations.Test;
 import utils.BaseDriver;
 import utils.ReusableMethods;
 
-public class _01_OpenCartWithLoginTest extends BaseDriver {
+public class _01_OpenCartWithLoginTest extends OpenCartDriver {
 
     private String email;
     private String password;
-    private ReusableMethods methods;
 
     @BeforeClass(alwaysRun = true)
-    void goToWebsite() {
-        methods = new ReusableMethods(wait, driver, js);
+    void initCredentials() {
         email = "test12345asda@test.com"; //methods.randomWord(10) + "@test.com";
         password = "someRassword123"; //methods.randomPassword(10);
-        driver.get("https://opencart.abstracta.us/index.php");
-        try {
-            driver.findElement(By.id("details-button")).click();
-            driver.findElement(By.id("proceed-link")).click();
-        } catch (Exception e) {
-            // this means there's no "Your connection is not private" page!
-        }
-
     }
 
     @Test(groups = "smoke")

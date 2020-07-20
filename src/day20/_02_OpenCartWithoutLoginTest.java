@@ -10,21 +10,7 @@ import utils.ReusableMethods;
 
 import java.util.List;
 
-public class _02_OpenCartWithoutLoginTest extends BaseDriver {
-
-    private ReusableMethods methods;
-
-    @BeforeClass(alwaysRun = true)
-    void goToWebsite() {
-        methods = new ReusableMethods(wait, driver, js);
-        driver.get("https://opencart.abstracta.us/index.php");
-        try {
-            driver.findElement(By.id("details-button")).click();
-            driver.findElement(By.id("proceed-link")).click();
-        } catch (Exception e) {
-            // this means there's no "Your connection is not private" page!
-        }
-    }
+public class _02_OpenCartWithoutLoginTest extends OpenCartDriver {
 
     @Test(dataProvider = "searchTermDataProvider")
     void searchTestCase(String searchTerm){
