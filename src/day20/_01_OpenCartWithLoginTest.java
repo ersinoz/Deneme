@@ -149,4 +149,8 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
         List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
         methods.verifyAtLeastOneContainsText(elements, firstName);
     }
+
+    // task3
+    // edit the address
+    // verify edition, by checking success message and verifyAtLeastOneContainsText()
 }
