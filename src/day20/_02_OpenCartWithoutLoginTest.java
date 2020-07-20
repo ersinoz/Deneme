@@ -33,4 +33,8 @@ public class _02_OpenCartWithoutLoginTest extends OpenCartDriver {
         };
     }
 
+    // task 5
+    // go to contact us page
+    // fill in form click submit
+    // verify "Your enquiry has been successfully sent to the store owner!"
 }
