@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import utils.BaseDriver;
 import utils.ReusableMethods;
@@ -19,10 +21,20 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
     // make this credentials come from xml
     // if not supplied from xml, make sure to use default value
     // add additional boolean parameter, to use random generator or not, by default not
+    @Parameters({"email", "password", "useRandom"})
     @BeforeClass(alwaysRun = true)
-    void initCredentials() {
-        email = "test12345asda@test.com"; //methods.randomWord(10) + "@test.com";
-        password = "someRassword123"; //methods.randomPassword(10);
+    void initCredentials(
+            @Optional("test12345asda@test.com") String email,
+            @Optional("someRassword123") String password,
+            @Optional("false") String useRandom
+    ) {
+        if(useRandom.equals("true")){
+            this.email =  methods.randomWord(10) + "@test.com";
+            this.password = methods.randomPassword(10);
+        } else {
+            this.email = email;
+            this.password = password;
+        }
     }
 
     @Test(groups = "smoke")
