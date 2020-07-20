@@ -18,7 +18,7 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
     // task1
     // make this credentials come from xml
     // if not supplied from xml, make sure to use default value
-    // add additional boolean parameter, to use random generator or not
+    // add additional boolean parameter, to use random generator or not, by default not
     @BeforeClass(alwaysRun = true)
     void initCredentials() {
         email = "test12345asda@test.com"; //methods.randomWord(10) + "@test.com";
