@@ -27,16 +27,16 @@ public class ReusableMethods {
         }
     }
 
+    public void verifyNoneContainsText(List<WebElement> elements, String searchTerm) {
+        Assert.assertFalse(elements.isEmpty(), "The list of elements is empty, cannot verify that not contain searchTerm!");
+        boolean found = elementIsFoundIn(elements, searchTerm);
+        Assert.assertFalse(found, "The list should not contain search term: " + searchTerm);
+
+    }
+
     public void verifyAtLeastOneContainsText(List<WebElement> elements, String searchTerm) {
         Assert.assertFalse(elements.isEmpty(), "The list of elements is empty, cannot find searchTerm!");
-        boolean found = false;
-        for (WebElement element : elements) {
-            String elementText = element.getText().toLowerCase();
-            if(elementText.contains(searchTerm.toLowerCase())){
-                found = true;
-                break;
-            }
-        }
+        boolean found = elementIsFoundIn(elements, searchTerm);
         Assert.assertTrue(found, "The list doesn't contain any search term: " + searchTerm);
     }
 
@@ -101,5 +101,17 @@ public class ReusableMethods {
             password[i] = possibleLetters.charAt(rand);
         }
         return new String(password);
+    }
+
+    private boolean elementIsFoundIn(List<WebElement> elements, String searchTerm) {
+        boolean found = false;
+        for (WebElement element : elements) {
+            String elementText = element.getText().toLowerCase();
+            if (elementText.contains(searchTerm.toLowerCase())) {
+                found = true;
+                break;
+            }
+        }
+        return found;
     }
 }

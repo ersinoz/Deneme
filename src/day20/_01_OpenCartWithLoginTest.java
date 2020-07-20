@@ -20,6 +20,8 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
     private String email;
     private String password;
     private boolean useRandom;
+    private String editFirstName;
+
     // task1
     // make this credentials come from xml
     // if not supplied from xml, make sure to use default value
@@ -129,7 +131,7 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
     // click on "Continue"
     // validate that new address was created
     @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
-    void editAddressBook(){
+    void createAddressTest(){
         driver.findElement(By.cssSelector("#column-right a[href*='account/address']")).click();
         wait.until(ExpectedConditions.titleIs("Address Book"));
         driver.findElement(By.cssSelector(".pull-right .btn-primary")).click();
@@ -153,8 +155,8 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
     // task3
     // edit the address
     // verify edition, by checking success message and verifyAtLeastOneContainsText()
-    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
-    void editAddress(){
+    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase", "createAddressTest"})
+    void editAddressTest(){
         driver.findElement(By.cssSelector("#column-right a[href*='account/address']")).click();
         wait.until(ExpectedConditions.titleIs("Address Book"));
 
@@ -163,7 +165,7 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
         // select last element to edit,
         editButtons.get(editButtons.size() - 1).click();
 
-        String editFirstName = "edit first name";
+        editFirstName = "edit first name";
         methods.clearAndSendKeys(By.id("input-firstname"), editFirstName);
 
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
@@ -181,4 +183,19 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
     // task4
     // delete the created address
     // verify it's deleted
+    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase", "createAddressTest", "editAddressTest"})
+    void deleteAddressTest(){
+        driver.findElement(By.cssSelector("#column-right a[href*='account/address']")).click();
+        wait.until(ExpectedConditions.titleIs("Address Book"));
+
+        // .table-hover .btn-info gives a list
+        List<WebElement> editButtons = driver.findElements(By.cssSelector(".table-hover .btn-danger"));
+        // delete last element
+        editButtons.get(editButtons.size() - 1).click();
+
+        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "delete");
+
+        List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
+        methods.verifyNoneContainsText(elements, editFirstName);
+    }
 }
