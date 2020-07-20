@@ -4,7 +4,7 @@
 <suite name="Task01">
     <parameter name="email" value="test12345asda@test.com"></parameter>
     <parameter name="password" value="someRassword123"></parameter>
-    <parameter name="useRandom" value="false"></parameter>
+    <parameter name="useRandom" value="true"></parameter>
     <test name="SimpleTestNG">
         <classes>
             <class name="day20._01_OpenCartWithLoginTest"></class>

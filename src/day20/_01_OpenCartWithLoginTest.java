@@ -16,7 +16,7 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
 
     private String email;
     private String password;
-
+    private boolean useRandom;
     // task1
     // make this credentials come from xml
     // if not supplied from xml, make sure to use default value
@@ -29,15 +29,17 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
             @Optional("false") String useRandom
     ) {
         if(useRandom.equals("true")){
+            this.useRandom = true;
             this.email =  methods.randomWord(10) + "@test.com";
             this.password = methods.randomPassword(10);
         } else {
+            this.useRandom = false;
             this.email = email;
             this.password = password;
         }
     }
 
-    @Test(groups = "smoke")
+    @Test(groups = "smoke", dependsOnMethods = "createAccountTest")
     void loginTestCase() {
         driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/login");
         // test12345asd@test.com
@@ -54,33 +56,36 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
         Assert.assertEquals(title, "My Account");
     }
 
-    @Test(enabled = false)
+    @Test()
     void createAccountTest() {
-        driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/register");
+        if(this.useRandom) {
+            driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/register");
 
-        driver.findElement(By.cssSelector("#input-firstname")).sendKeys("Name");
-        driver.findElement(By.cssSelector("#input-lastname")).sendKeys("Last Name");
-        driver.findElement(By.cssSelector("#input-email")).sendKeys(email);
-        driver.findElement(By.cssSelector("#input-telephone")).sendKeys("12345679812");
-        driver.findElement(By.cssSelector("#input-address-1")).sendKeys("Last Name");
-        driver.findElement(By.cssSelector("#input-city")).sendKeys("Last Name");
-        driver.findElement(By.cssSelector("#input-postcode")).sendKeys("123123");
-        Select country = new Select(driver.findElement(By.cssSelector("#input-country")));
-        country.selectByIndex(3);
-        WebDriverWait wait = new WebDriverWait(driver, 12);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
-        Select region = new Select(driver.findElement(By.cssSelector("#input-zone")));
-        region.selectByIndex(2);
-        driver.findElement(By.cssSelector("#input-password")).sendKeys(password);
-        driver.findElement(By.cssSelector("#input-confirm")).sendKeys(password);
-        driver.findElement(By.cssSelector("[name=\"agree\"]")).click();
-        driver.findElement(By.cssSelector("[value=\"Continue\"]")).click();
-        //verify that you are logged in
-        String title = driver.getTitle();
-        Assert.assertEquals(title, "Your Account Has Been Created!");
+            driver.findElement(By.cssSelector("#input-firstname")).sendKeys("Name");
+            driver.findElement(By.cssSelector("#input-lastname")).sendKeys("Last Name");
+            driver.findElement(By.cssSelector("#input-email")).sendKeys(email);
+            driver.findElement(By.cssSelector("#input-telephone")).sendKeys("12345679812");
+            driver.findElement(By.cssSelector("#input-address-1")).sendKeys("Last Name");
+            driver.findElement(By.cssSelector("#input-city")).sendKeys("Last Name");
+            driver.findElement(By.cssSelector("#input-postcode")).sendKeys("123123");
+            Select country = new Select(driver.findElement(By.cssSelector("#input-country")));
+            country.selectByIndex(3);
+            WebDriverWait wait = new WebDriverWait(driver, 12);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
+            Select region = new Select(driver.findElement(By.cssSelector("#input-zone")));
+            region.selectByIndex(2);
+            driver.findElement(By.cssSelector("#input-password")).sendKeys(password);
+            driver.findElement(By.cssSelector("#input-confirm")).sendKeys(password);
+            driver.findElement(By.cssSelector("[name=\"agree\"]")).click();
+            driver.findElement(By.cssSelector("[value=\"Continue\"]")).click();
+            //verify that you are logged in
+            String title = driver.getTitle();
+            Assert.assertEquals(title, "Your Account Has Been Created!");
 
-        driver.findElement(By.cssSelector("a.list-group-item[href*=logout]")).click();
-
+            driver.findElement(By.cssSelector("a.list-group-item[href*=logout]")).click();
+        } else {
+            System.out.println("Using existing account");
+        }
     }
 
     @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
