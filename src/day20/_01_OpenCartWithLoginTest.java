@@ -87,7 +87,7 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
 
             driver.findElement(By.cssSelector("a.list-group-item[href*=logout]")).click();
         } else {
-            // TODO: throw skipException instead
+            // cannot throw skip exception here
             System.out.println("Using existing account");
         }
     }
