@@ -73,11 +73,11 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
             page.addressInput.sendKeys("Last Name");
             page.cityInput.sendKeys("Last Name");
             page.zipCodeInput.sendKeys("123123");
-            Select country = new Select(driver.findElement(By.cssSelector("#input-country")));
+            Select country = new Select(page.countryInput);
             country.selectByIndex(3);
             WebDriverWait wait = new WebDriverWait(driver, 12);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
-            Select region = new Select(driver.findElement(By.cssSelector("#input-zone")));
+            Select region = new Select(page.zoneInput);
             region.selectByIndex(2);
             page.passwordInput.sendKeys(password);
             page.passwordConfirmInput.sendKeys(password);
@@ -134,19 +134,19 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
     void createAddressTest(){
         driver.findElement(By.cssSelector("#column-right a[href*='account/address']")).click();
         wait.until(ExpectedConditions.titleIs("Address Book"));
-        driver.findElement(By.cssSelector(".pull-right .btn-primary")).click();
+        page.primaryButton.click();
         String firstName = "Ayse";
-        driver.findElement(By.cssSelector("#input-firstname")).sendKeys(firstName);
-        driver.findElement(By.cssSelector("#input-lastname")).sendKeys("Ayse");
-        driver.findElement(By.cssSelector("#input-address-1")).sendKeys("1102 Slade");
-        driver.findElement(By.cssSelector("#input-city")).sendKeys("Columbus");
-        driver.findElement(By.cssSelector("#input-postcode")).sendKeys("42356");
-        Select select= new Select(driver.findElement(By.id("input-country")));
+        page.firstNameInput.sendKeys(firstName);
+        page.lastNameInput.sendKeys("Ayse");
+        page.addressInput.sendKeys("1102 Slade");
+        page.cityInput.sendKeys("Columbus");
+        page.zipCodeInput.sendKeys("42356");
+        Select select= new Select(page.countryInput);
         select.selectByIndex(2); // TODO: use random
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
-        Select select1= new Select(driver.findElement(By.id("input-zone")));
+        Select select1= new Select(page.zoneInput);
         select1.selectByIndex(2);  // TODO: use random
-        driver.findElement(By.cssSelector(".pull-right .btn-primary")).click();
+        page.primaryButton.click();
         Assert.assertEquals("Address Book Entries",driver.findElement(By.cssSelector("#content>h2")).getText());
         List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
         methods.verifyAtLeastOneContainsText(elements, firstName);
@@ -170,7 +170,7 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
 
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
 
-        driver.findElement(By.cssSelector(".pull-right .btn-primary")).click();
+        page.primaryButton.click();
 
         methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "success");
 

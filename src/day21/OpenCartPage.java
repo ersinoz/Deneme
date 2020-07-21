@@ -60,6 +60,12 @@ public class OpenCartPage {
     @FindBy(id = "input-city")
     public WebElement cityInput;
 
+    @FindBy(id = "input-country")
+    public WebElement countryInput;
+
+    @FindBy(id = "input-zone")
+    public WebElement zoneInput;
+
     @FindBy(id = "input-postcode")
     public WebElement zipCodeInput;
 
@@ -71,6 +77,9 @@ public class OpenCartPage {
 
     @FindBy(css ="[value='Continue']" )
     public WebElement continueButton;
+
+    @FindBy(css =".pull-right .btn-primary" )
+    public WebElement primaryButton;
 
     @FindBy(css ="a.list-group-item[href*=logout]" )
     public WebElement logOutLink;
