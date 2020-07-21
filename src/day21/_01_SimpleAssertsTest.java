@@ -86,4 +86,10 @@ public class _01_SimpleAssertsTest {
         Object reference = new Integer(1);
         Assert.assertNotSame(actual, reference, "Expecting objects to not be same!");
     }
+
+    @Test
+    void testCase13() {
+        boolean actual = false;
+        Assert.assertTrue(actual, "Expected element to found!");
+    }
 }
