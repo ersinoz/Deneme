@@ -83,4 +83,19 @@ public class OpenCartPage {
 
     @FindBy(css ="a.list-group-item[href*=logout]" )
     public WebElement logOutLink;
+
+    @FindBy(css = "[onclick=\"cart.add('43');\"]")
+    public WebElement macBookAddToCart;
+
+    @FindBy(css = ".alert-success")
+    public WebElement successAlert;
+
+    @FindBy(className = "img-thumbnail")
+    public WebElement productThumbnail;
+
+    @FindBy(css = "tbody > tr > td.text-left")
+    public List<WebElement> productProperties;
+
+    @FindBy(css = "tbody > tr > td.text-right")
+    public List<WebElement> productPrices;
 }

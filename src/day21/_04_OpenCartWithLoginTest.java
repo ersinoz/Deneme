@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
@@ -100,7 +101,7 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
         driver.findElement(By.cssSelector("input[name=\"newsletter\"][value=\"1\"]")).click();
         driver.findElement(By.cssSelector("input[value=\"Continue\"]")).click();
 
-        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "Success");
+        methods.verifyOneContainsText(page.successAlert, "Success");
     }
 
     @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
@@ -109,7 +110,7 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
         driver.findElement(By.cssSelector("input[name=\"newsletter\"][value=\"0\"]")).click();
         driver.findElement(By.cssSelector("input[value=\"Continue\"]")).click();
 
-        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "Success");
+        methods.verifyOneContainsText(page.successAlert, "Success");
     }
 
     @Test(dependsOnMethods = {"loginTestCase"}, groups = {"functional"})
@@ -121,7 +122,7 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
 
         driver.findElement(By.cssSelector("input[value=\"Continue\"]")).click();
 
-        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "Success");
+        methods.verifyOneContainsText(page.successAlert, "Success");
     }
 
     // task2
@@ -172,7 +173,7 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
 
         page.primaryButton.click();
 
-        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "success");
+        methods.verifyOneContainsText(page.successAlert, "success");
 
         List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
         methods.verifyAtLeastOneContainsText(elements, editFirstName);
@@ -193,9 +194,35 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
         // delete last element
         editButtons.get(editButtons.size() - 1).click();
 
-        methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "delete");
+        methods.verifyOneContainsText(page.successAlert, "delete");
 
         List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
         methods.verifyNoneContainsText(elements, editFirstName);
+    }
+
+    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
+    void addToCartTest(){
+        driver.navigate().to("http://opencart.abstracta.us/index.php?route=common/home");
+        wait.until(ExpectedConditions.titleIs("Your Store"));
+
+        page.macBookAddToCart.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("alert-success")));
+        methods.verifyOneContainsText(page.successAlert, "success");
+
+        driver.navigate().to("http://opencart.abstracta.us/index.php?route=checkout/cart");
+        wait.until(ExpectedConditions.titleIs("Shopping Cart"));
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".table-responsive")));
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertTrue(page.productThumbnail.getAttribute("src").contains("macbook"));
+
+        softAssert.assertTrue(page.productProperties.get(0).getText().contains("MacBook"));
+        softAssert.assertTrue(page.productProperties.get(1).getText().contains("Product 16"));
+
+        softAssert.assertTrue(page.productPrices.get(0).getText().contains("500"));
+
+        softAssert.assertAll();
+
     }
 }
