@@ -35,7 +35,7 @@ public class _03_HomeworkPracticeHandlingDropdown extends BaseDriver {
                     dropDown.sendKeys(Keys.ENTER);
                 }
             } catch (TimeoutException e) {
-                Assert.fail("I expected checkboxes, but there arent any!");
+                Assert.fail("I expected checkboxes, but there aren't any!", e);
             }
         } catch (NoSuchElementException e) {
             System.out.println("there is no loader, no checkboxes, don't need to wait");
