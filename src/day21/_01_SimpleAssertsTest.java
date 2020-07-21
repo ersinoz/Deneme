@@ -77,6 +77,13 @@ public class _01_SimpleAssertsTest {
     void testCase11() {
         Object actual = new Integer(1);
         Object reference = new Integer(1);
-        Assert.assertEquals(actual, reference, "Expecting objects to be the equal!");
+        Assert.assertEquals(actual, reference, "Expecting objects to be equal!");
+    }
+
+    @Test()
+    void testCase12() {
+        Object actual = new Integer(1);
+        Object reference = new Integer(1);
+        Assert.assertNotSame(actual, reference, "Expecting objects to not be same!");
     }
 }
