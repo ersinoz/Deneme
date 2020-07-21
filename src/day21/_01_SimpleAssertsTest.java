@@ -47,4 +47,16 @@ public class _01_SimpleAssertsTest {
         double expected = 10.0;
         Assert.assertNotEquals(actual, expected, 0.1, "Expected not to be equal withing 0.1 delta!");
     }
+
+    @Test()
+    void testCase7() {
+        Object actual = null;
+        Assert.assertNotNull(actual, "Expecting actual not to be NULL!");
+    }
+
+    @Test()
+    void testCase8() {
+        Object actual = null;
+        Assert.assertNull(actual, "Expecting actual to be NULL!");
+    }
 }
