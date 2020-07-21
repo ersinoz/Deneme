@@ -11,13 +11,6 @@ import org.testng.annotations.Test;
 
 public class _03_OpenCartWithoutLoginTest extends OpenCartDriver {
 
-    private OpenCartPage page;
-
-    @BeforeClass
-    void initPage() {
-        this.page = new OpenCartPage(driver);
-    }
-
     @Test(dataProvider = "searchTermDataProvider")
     void searchTestCase(String searchTerm){
         System.out.println("initail searchterm: "+searchTerm);

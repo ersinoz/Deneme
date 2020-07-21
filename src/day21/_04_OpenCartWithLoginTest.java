@@ -20,7 +20,6 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
     private String password;
     private boolean useRandom;
     private String editFirstName;
-    private OpenCartPage page;
 
     // task1
     // make this credentials come from xml
@@ -42,11 +41,6 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
             this.email = email;
             this.password = password;
         }
-    }
-
-    @BeforeClass
-    void initPage() {
-        this.page = new OpenCartPage(driver);
     }
 
     @Test(groups = "smoke", dependsOnMethods = "createAccountTest")
