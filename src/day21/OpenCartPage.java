@@ -36,7 +36,6 @@ public class OpenCartPage {
     @FindBy(id = "input-email")
     public WebElement emailInput;
 
-
     @FindBy(css = "input[value='Submit']")
     public WebElement submitButton;
 
