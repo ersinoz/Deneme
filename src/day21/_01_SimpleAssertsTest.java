@@ -59,4 +59,18 @@ public class _01_SimpleAssertsTest {
         Object actual = null;
         Assert.assertNull(actual, "Expecting actual to be NULL!");
     }
+
+    @Test()
+    void testCase9() {
+        Object actual = new Object();
+        Object reference = actual;
+        Assert.assertSame(actual, reference, "Expecting objects to be the same!");
+    }
+
+    @Test()
+    void testCase10() {
+        Object actual = new Object();
+        Object reference = new Object();
+        Assert.assertSame(actual, reference, "Expecting objects to be the same!");
+    }
 }
