@@ -10,7 +10,7 @@ public class OpenCartDriver extends BaseDriver {
     protected ReusableMethods methods;
 
     @BeforeClass(alwaysRun = true)
-    void goToWebsite() {
+    protected void goToWebsite() {
         methods = new ReusableMethods(wait, driver, js);
         driver.get("https://opencart.abstracta.us/index.php");
         try {
