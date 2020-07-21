@@ -20,6 +20,7 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
     private String password;
     private boolean useRandom;
     private String editFirstName;
+    private OpenCartPage page;
 
     // task1
     // make this credentials come from xml
@@ -43,6 +44,11 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
         }
     }
 
+    @BeforeClass
+    void initPage() {
+        this.page = new OpenCartPage(driver);
+    }
+
     @Test(groups = "smoke", dependsOnMethods = "createAccountTest")
     void loginTestCase() {
         driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/login");
@@ -50,11 +56,11 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
         // qwerty12345
 
         //input the email
-        driver.findElement(By.cssSelector("#input-email")).sendKeys(email);
+        page.emailInput.sendKeys(email);
         //input the password
-        driver.findElement(By.cssSelector("#input-password")).sendKeys(password);
+        page.passwordInput.sendKeys(password);
         //click on login
-        driver.findElement(By.cssSelector("input[value=\"Login\"]")).click();
+        page.loginButton.click();
         //verify that you are logged in
         String title = driver.getTitle();
         Assert.assertEquals(title, "My Account");

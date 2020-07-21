@@ -36,6 +36,12 @@ public class OpenCartPage {
     @FindBy(id = "input-email")
     public WebElement emailInput;
 
+    @FindBy(id ="input-password" )
+    public WebElement passwordInput;
+
+    @FindBy(css ="input[value='Login']" )
+    public WebElement loginButton;
+
     @FindBy(css = "input[value='Submit']")
     public WebElement submitButton;
 
