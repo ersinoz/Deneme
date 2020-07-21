@@ -65,28 +65,29 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
         if(this.useRandom) {
             driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/register");
 
-            driver.findElement(By.cssSelector("#input-firstname")).sendKeys("Name");
-            driver.findElement(By.cssSelector("#input-lastname")).sendKeys("Last Name");
-            driver.findElement(By.cssSelector("#input-email")).sendKeys(email);
-            driver.findElement(By.cssSelector("#input-telephone")).sendKeys("12345679812");
-            driver.findElement(By.cssSelector("#input-address-1")).sendKeys("Last Name");
-            driver.findElement(By.cssSelector("#input-city")).sendKeys("Last Name");
-            driver.findElement(By.cssSelector("#input-postcode")).sendKeys("123123");
+
+            page.firstNameInput.sendKeys("Name");
+            page.lastNameInput.sendKeys("Last Name");
+            page.emailInput.sendKeys(email);
+            page.phoneInput.sendKeys("12345679812");
+            page.addressInput.sendKeys("Last Name");
+            page.cityInput.sendKeys("Last Name");
+            page.zipCodeInput.sendKeys("123123");
             Select country = new Select(driver.findElement(By.cssSelector("#input-country")));
             country.selectByIndex(3);
             WebDriverWait wait = new WebDriverWait(driver, 12);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
             Select region = new Select(driver.findElement(By.cssSelector("#input-zone")));
             region.selectByIndex(2);
-            driver.findElement(By.cssSelector("#input-password")).sendKeys(password);
-            driver.findElement(By.cssSelector("#input-confirm")).sendKeys(password);
-            driver.findElement(By.cssSelector("[name=\"agree\"]")).click();
-            driver.findElement(By.cssSelector("[value=\"Continue\"]")).click();
+            page.passwordInput.sendKeys(password);
+            page.passwordConfirmInput.sendKeys(password);
+            page.agreeCheckbox.click();
+            page.continueButton.click();
             //verify that you are logged in
             String title = driver.getTitle();
             Assert.assertEquals(title, "Your Account Has Been Created!");
 
-            driver.findElement(By.cssSelector("a.list-group-item[href*=logout]")).click();
+            page.logOutLink.click();
         } else {
             // cannot throw skip exception here
             System.out.println("Using existing account");

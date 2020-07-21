@@ -45,5 +45,33 @@ public class OpenCartPage {
     @FindBy(css = "input[value='Submit']")
     public WebElement submitButton;
 
+    @FindBy(id = "input-firstname")
+    public WebElement firstNameInput;
 
+    @FindBy(id = "input-lastname")
+    public WebElement lastNameInput;
+
+    @FindBy(id = "input-telephone")
+    public WebElement phoneInput;
+
+    @FindBy(id = "input-address-1")
+    public WebElement addressInput;
+
+    @FindBy(id = "input-city")
+    public WebElement cityInput;
+
+    @FindBy(id = "input-postcode")
+    public WebElement zipCodeInput;
+
+    @FindBy(id = "input-confirm")
+    public WebElement passwordConfirmInput;
+
+    @FindBy(css ="[name='agree']" )
+    public WebElement agreeCheckbox;
+
+    @FindBy(css ="[value='Continue']" )
+    public WebElement continueButton;
+
+    @FindBy(css ="a.list-group-item[href*=logout]" )
+    public WebElement logOutLink;
 }
