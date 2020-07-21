@@ -20,4 +20,25 @@ public class OpenCartPage {
 
     @FindBy(css = ".product-thumb h4")
     public List<WebElement> products;
+
+    @FindBy(css = "a[href*=contact]")
+    public WebElement contactUsLink;
+
+    @FindBy(css = "textarea[name='enquiry']")
+    public WebElement contactUsTextArea;
+
+    @FindBy(css = "#content>p")
+    public WebElement contactUsResult;
+
+    @FindBy(id = "input-name")
+    public WebElement nameInput;
+
+    @FindBy(id = "input-email")
+    public WebElement emailInput;
+
+
+    @FindBy(css = "input[value='Submit']")
+    public WebElement submitButton;
+
+
 }
