@@ -241,7 +241,7 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
         List<WebElement> listOfProducts = driver.findElements(By.className("product-layout"));
         int randomItemIndex = new Random().nextInt(listOfProducts.size());
         WebElement randomlySelectedProduct = listOfProducts.get(randomItemIndex);
-        String randomlySelectedProductName = randomlySelectedProduct.findElement(By.cssSelector(".caption >h4")).getText();
+        String randomlySelectedProductName =  randomlySelectedProduct.findElement(By.cssSelector(".caption >h4")).getText();
         randomlySelectedProduct.findElement(By.cssSelector("button[data-original-title=\"Add to Wish List\"]")).click();
 
         // verifying success message that product was added to wishlist
@@ -257,4 +257,11 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
         methods.verifyAtLeastOneContainsText(wishlistProducts, randomlySelectedProductName);
     }
 
+    //day22,task3
+    // create a test case for removing item from wishlist
+    // add the item to wishlist, delete it and verify it's not present inside the wishlist page
+    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
+    void deleteWishListTest(){
+
+    }
 }
