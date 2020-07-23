@@ -215,12 +215,15 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".table-responsive")));
         SoftAssert softAssert = new SoftAssert();
 
-        softAssert.assertTrue(page.productThumbnail.getAttribute("src").contains("macbook"));
+        String searchTerm = "macbook";
+        softAssert.assertTrue(page.productThumbnail.getAttribute("src").contains(searchTerm), "Thumbnail needs to contain "+ searchTerm);
 
-        softAssert.assertTrue(page.productProperties.get(0).getText().contains("MacBook"));
-        softAssert.assertTrue(page.productProperties.get(1).getText().contains("Product 16"));
+        softAssert.assertTrue(page.productProperties.get(1).getText().toLowerCase().contains(searchTerm), "Product Name needs to contain "+ searchTerm);
+        String productModel = "Product 16".toLowerCase();
+        softAssert.assertTrue(page.productProperties.get(2).getText().toLowerCase().contains(productModel), "Product model needs to contain "+ productModel);
 
-        softAssert.assertTrue(page.productPrices.get(0).getText().contains("500"));
+        String productPrice = "500";
+        softAssert.assertTrue(page.productPrices.get(0).getText().contains(productPrice), "Product price needs to contain "+ productPrice);
 
         softAssert.assertAll();
 
