@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.Random;
 
 public class _02_OpenCartWithLoginTest extends OpenCartDriver {
 
@@ -231,6 +232,29 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
     }
 
     //day22,task2
-    // create a test case for adding to favorite on random item from homepage
-    // add the item to favorite and verify it's present inside the favorite page
+    // create a test case for adding to wishlist on random item from homepage
+    // add the item to wishlist and verify it's present inside the wishlist page
+    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
+    void addToWishListTest(){
+        driver.navigate().to("http://opencart.abstracta.us/index.php?route=common/home");
+        // selecting random product to add to wishlist
+        List<WebElement> listOfProducts = driver.findElements(By.className("product-layout"));
+        int randomItemIndex = new Random().nextInt(listOfProducts.size());
+        WebElement randomlySelectedProduct = listOfProducts.get(randomItemIndex);
+        String randomlySelectedProductName = randomlySelectedProduct.findElement(By.cssSelector(".caption >h4")).getText();
+        randomlySelectedProduct.findElement(By.cssSelector("button[data-original-title=\"Add to Wish List\"]")).click();
+
+        // verifying success message that product was added to wishlist
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("alert-success")));
+        methods.verifyOneContainsText(page.successAlert, "success");
+
+        // go to wishlist
+        // driver.navigate().to("http://opencart.abstracta.us/index.php?route=account/wishlist");
+        driver.findElement(By.cssSelector("#wishlist-total")).click();
+
+        // verify that randomlySelectedProductName is present in the wishlist
+        List<WebElement> wishlistProducts = driver.findElements(By.cssSelector("tbody > tr > td.text-left :first-of-type"));
+        methods.verifyAtLeastOneContainsText(wishlistProducts, randomlySelectedProductName);
+    }
+
 }
