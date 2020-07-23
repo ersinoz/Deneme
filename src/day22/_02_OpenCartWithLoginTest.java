@@ -229,4 +229,8 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
         softAssert.assertAll();
 
     }
+
+    //day22,task2
+    // create a test case for adding to favorite on random item from homepage
+    // add the item to favorite and verify it's present inside the favorite page
 }
