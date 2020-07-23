@@ -22,6 +22,7 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
     private String password;
     private boolean useRandom;
     private String editFirstName;
+    private String randomlySelectedProductNameToAddToWishlist;
 
     // task1
     // make this credentials come from xml
@@ -199,7 +200,7 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
         methods.verifyOneContainsText(page.successAlert, "delete");
 
         List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
-        methods.verifyNoneContainsText(elements, editFirstName);
+        methods.verifyNoneContainsTextAndNotEmpty(elements, editFirstName);
     }
 
     @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
@@ -241,7 +242,7 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
         List<WebElement> listOfProducts = driver.findElements(By.className("product-layout"));
         int randomItemIndex = new Random().nextInt(listOfProducts.size());
         WebElement randomlySelectedProduct = listOfProducts.get(randomItemIndex);
-        String randomlySelectedProductName =  randomlySelectedProduct.findElement(By.cssSelector(".caption >h4")).getText();
+        randomlySelectedProductNameToAddToWishlist = randomlySelectedProduct.findElement(By.cssSelector(".caption >h4")).getText();
         randomlySelectedProduct.findElement(By.cssSelector("button[data-original-title=\"Add to Wish List\"]")).click();
 
         // verifying success message that product was added to wishlist
@@ -249,19 +250,28 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
         methods.verifyOneContainsText(page.successAlert, "success");
 
         // go to wishlist
-        // driver.navigate().to("http://opencart.abstracta.us/index.php?route=account/wishlist");
-        driver.findElement(By.cssSelector("#wishlist-total")).click();
+        driver.navigate().to("http://opencart.abstracta.us/index.php?route=account/wishlist");
+        //driver.findElement(By.cssSelector("#wishlist-total")).click();
 
         // verify that randomlySelectedProductName is present in the wishlist
         List<WebElement> wishlistProducts = driver.findElements(By.cssSelector("tbody > tr > td.text-left :first-of-type"));
-        methods.verifyAtLeastOneContainsText(wishlistProducts, randomlySelectedProductName);
+        methods.verifyAtLeastOneContainsText(wishlistProducts, randomlySelectedProductNameToAddToWishlist);
     }
 
     //day22,task3
     // create a test case for removing item from wishlist
     // add the item to wishlist, delete it and verify it's not present inside the wishlist page
-    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
+    @Test(dependsOnMethods = {"createAccountTest", "loginTestCase", "addToWishListTest"})
     void deleteWishListTest(){
+        // delete first item from wishlist
+        driver.findElement(By.xpath("//a[text()='"+randomlySelectedProductNameToAddToWishlist+"']/../..//a[@class='btn btn-danger']")).click();
 
+        // verifying success message that product was added to wishlist
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("alert-success")));
+        methods.verifyOneContainsText(page.successAlert, "success");
+
+        // verify it's not present inside the wishlist page
+        List<WebElement> wishlistProducts = driver.findElements(By.cssSelector("tbody > tr > td.text-left :first-of-type"));
+        methods.verifyNoneContainsText(wishlistProducts, randomlySelectedProductNameToAddToWishlist);
     }
 }

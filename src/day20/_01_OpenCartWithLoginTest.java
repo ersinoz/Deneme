@@ -10,8 +10,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import utils.BaseDriver;
-import utils.ReusableMethods;
 
 import java.util.List;
 
@@ -196,6 +194,6 @@ public class _01_OpenCartWithLoginTest extends OpenCartDriver {
         methods.verifyOneContainsText(driver.findElement(By.cssSelector(".alert-success")), "delete");
 
         List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
-        methods.verifyNoneContainsText(elements, editFirstName);
+        methods.verifyNoneContainsTextAndNotEmpty(elements, editFirstName);
     }
 }

@@ -27,8 +27,14 @@ public class ReusableMethods {
         }
     }
 
-    public void verifyNoneContainsText(List<WebElement> elements, String searchTerm) {
+    public void verifyNoneContainsTextAndNotEmpty(List<WebElement> elements, String searchTerm) {
         Assert.assertFalse(elements.isEmpty(), "The list of elements is empty, cannot verify that not contain searchTerm!");
+        boolean found = elementIsFoundIn(elements, searchTerm);
+        Assert.assertFalse(found, "The list should not contain search term: " + searchTerm);
+
+    }
+
+    public void verifyNoneContainsText(List<WebElement> elements, String searchTerm) {
         boolean found = elementIsFoundIn(elements, searchTerm);
         Assert.assertFalse(found, "The list should not contain search term: " + searchTerm);
 

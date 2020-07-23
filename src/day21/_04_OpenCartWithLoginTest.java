@@ -197,7 +197,7 @@ public class _04_OpenCartWithLoginTest extends OpenCartDriver {
         methods.verifyOneContainsText(page.successAlert, "delete");
 
         List<WebElement> elements = driver.findElements(By.cssSelector(".text-left"));
-        methods.verifyNoneContainsText(elements, editFirstName);
+        methods.verifyNoneContainsTextAndNotEmpty(elements, editFirstName);
     }
 
     @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
