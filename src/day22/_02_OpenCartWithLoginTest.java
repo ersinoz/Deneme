@@ -133,6 +133,7 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
     // validate that new address was created
     @Test(dependsOnMethods = {"createAccountTest", "loginTestCase"})
     void createAddressTest(){
+        driver.navigate().to("https://opencart.abstracta.us/index.php?route=account/account");
         driver.findElement(By.cssSelector("#column-right a[href*='account/address']")).click();
         wait.until(ExpectedConditions.titleIs("Address Book"));
         page.primaryButton.click();
@@ -166,7 +167,7 @@ public class _02_OpenCartWithLoginTest extends OpenCartDriver {
         // select last element to edit,
         editButtons.get(editButtons.size() - 1).click();
 
-        editFirstName = "edit first name";
+        editFirstName = methods.randomWord(10);
         methods.clearAndSendKeys(By.id("input-firstname"), editFirstName);
 
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".fa-spin")));
