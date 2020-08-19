@@ -30,6 +30,7 @@ public class LoginPage extends Parent {
         waitAndClick(myElement);
     }
 
+
     public void findElementAndSendKeys(String element,String text) {
         switch (element) {
             case "userName":
