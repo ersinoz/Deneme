@@ -25,4 +25,5 @@ public class Parent {
     public void waitAndClick(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
+    //check it out page
 }
